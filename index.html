@@ -208,6 +208,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .spinner{width:28px;height:28px;border:2px solid #1E2230;border-top-color:#2A6FD4;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:480px){.dayname{font-size:28px}.btimes{min-width:76px}.tstart{font-size:13px}}
+[data-weekreset]:hover{border-color:#8A2020!important;background:#2A0808!important}
 </style>
 </head>
 <body>
@@ -510,6 +511,8 @@ function attachHandlers(){
     if(ait2){ait(parseInt(ait2.dataset.additem));return;}
     // add pillar
     if(e.target.closest('[data-addpillar]')){apl();return;}
+    // weekly reset
+    if(e.target.closest('[data-weekreset]')){weekReset();return;}
   };
 }
 
@@ -586,6 +589,17 @@ function rSched(){
   }).join('')}</div>`;
   html+=`<button class="addbtn" data-addbtn="1"><i class="ti ti-plus"></i> Add block</button>`;
   if(d.science) html+=`<div class="scisec"><div class="scititle">Science behind today</div>${d.science.map(s=>`<div class="sciitem">${s}</div>`).join('')}</div>`;
+  // Sunday only: weekly reset button
+  if(activeTab==='sun'){
+    const thisWeekChecks=Object.keys(xpData.checks||{}).filter(d2=>d2!==today()).length;
+    html+=`<div style="margin-top:20px;border-top:1px solid #1E2230;padding-top:16px">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#6A7080;margin-bottom:8px">Weekly Reset</div>
+      <div style="font-size:12px;color:#6A7080;margin-bottom:12px;line-height:1.5">Tap this at the end of each week to clear this week's checkmarks so you can earn XP fresh next week. Your total XP and rank are <strong style="color:#E8EAF0">never</strong> reset — only the ticks.</div>
+      <button data-weekreset="1" style="width:100%;padding:11px;border-radius:7px;border:1px solid #4A1515;background:#200A0A;color:#FF7070;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .15s">
+        🔄 Reset this week's checkmarks
+      </button>
+    </div>`;
+  }
   return html;
 }
 
@@ -757,6 +771,19 @@ window.eit=(pi,ii,ev)=>{if(ev)ev.stopPropagation();const it=path.pillars[pi].ite
 window.dit=(pi,ii)=>{if(!confirm('Delete item?'))return;path.pillars[pi].items.splice(ii,1);savePath();render();};
 window.ait=(pi,ev)=>{if(ev)ev.stopPropagation();showMod('Add item',[{id:'t',label:'Title',ph:'Item title'},{id:'s',label:'Sub-text',type:'textarea',ph:'Details, cues...'}],()=>{const t=gf('t');if(!t)return;path.pillars[pi].items.push({id:uid(),text:t,sub:gf('s')});cmModal();savePath();render();});};
 window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'Name',ph:'e.g. Nutrition'},{id:'d',label:'Description',ph:'Short description'},{id:'e',label:'Emoji icon',ph:'🔥'}],()=>{const n=gf('n');if(!n)return;path.pillars.push({id:uid(),icon:gf('e')||'📌',color:'#2A6FD4',bg:'#0D1520',name:n,desc:gf('d'),items:[],open:true});cmModal();savePath();render();});};
+// ── WEEKLY RESET ─────────────────────────────────────────────────
+function weekReset(){
+  if(!confirm('Reset all checkmarks from this week?\n\nYour total XP and rank are kept — only the ticks are cleared so you can earn XP again next week.'))return;
+  const t=today();
+  const kept={};
+  // Keep only today's checks (Sunday itself), clear everything before
+  if(xpData.checks[t]) kept[t]=xpData.checks[t];
+  xpData.checks=kept;
+  saveXP();
+  showToast('Week reset! Fresh start 🔄');
+  render();
+}
+
 // ── MODAL ────────────────────────────────────────────────────────
 function catOpts(){return[{v:'routine',l:'Routine'},{v:'team',l:'Team Training'},{v:'gym',l:'Gym'},{v:'kick',l:'Kicking'},{v:'sprint',l:'Sprint'},{v:'stretch',l:'Stretch / Recovery'},{v:'free',l:'Free Time'},{v:'sleep',l:'Sleep / Wind Down'},{v:'game',l:'Game Day'}];}
 function showMod(title,fields,onSave){
@@ -817,11 +844,11 @@ async function init(){
     else{sched=fresh;await setDoc(SCHED_DOC,{data:JSON.stringify(sched)});}
     if(pdS.exists()){const p=JSON.parse(pdS.data().data);path=(p&&p.pillars)?p:deepClone(DEFAULT_PATH);}
     else{path=deepClone(DEFAULT_PATH);await setDoc(PATH_DOC,{data:JSON.stringify(path)});}
-    if(xpS.exists()){const p=JSON.parse(xpS.data().data);if(p){xpData=p;if(!xpData.blockSettings)xpData.blockSettings={};}}
+    if(xpS.exists()){const p=JSON.parse(xpS.data().data);if(p){xpData=p;if(!xpData.blockSettings)xpData.blockSettings={};if(xpData.totalXP<750)xpData.totalXP=750;}}
     else{await setDoc(XP_DOC,{data:JSON.stringify(xpData)});}
     render();setupListeners();
     // Push build version so other devices get refresh banner
-    try{await setDoc(BUILD_DOC,{version:'2025-fix-nav-xp'});}catch(e){}
+    try{await setDoc(BUILD_DOC,{version:'2025-reset-btn-startxp'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
