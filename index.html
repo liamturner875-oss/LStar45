@@ -366,7 +366,7 @@ function makeDefaultSched(){
 
 // ── STATE ────────────────────────────────────────────────────────
 let sched=null,path=null;
-let xpData={totalXP:0,lastDate:'',streak:0,checks:{},blockSettings:{}};
+let xpData={totalXP:750,lastDate:'',streak:0,checks:{},blockSettings:{}};
 // blockSettings: { blockId: { enabled: bool, points: number } }
 let curDay=0,activeTab='mon',satTeam='1st';
 let swapIdx=null,tpIdx=null,syncStatus='synced';
@@ -426,6 +426,13 @@ function setupListeners(){
 }
 
 // ── RENDER ───────────────────────────────────────────────────────
+function linkify(text){
+  if(!text)return'';
+  // Escape HTML first
+  const esc=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Then make URLs clickable
+  return esc.replace(/(https?:\/\/[^\s<>"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:#5A9AF0;text-decoration:underline;word-break:break-all" onclick="event.stopPropagation()">$1</a>');
+}
 function render(){
   const app=document.getElementById('app');
   if(!sched||!path){app.innerHTML='<div class="loading-screen"><div class="spinner"></div><span>Loading…</span></div>';return;}
@@ -435,12 +442,81 @@ function render(){
   else body=rSched();
   app.innerHTML=rTopbar()+rNav()+'<div class="wrap">'+body+'</div>'+(swapIdx!==null&&activeTab!=='pathway'&&activeTab!=='ranks'?rSwapBar():'');
   setSS(syncStatus);
+  attachHandlers();
+}
+
+function attachHandlers(){
+  // NAV
+  const nav=document.getElementById('mainnav');
+  if(nav) nav.onclick=e=>{
+    const btn=e.target.closest('[data-nav]');
+    if(!btn)return;
+    const tab=btn.dataset.nav,idx=parseInt(btn.dataset.idx||0);
+    if(tab==='pathway'){activeTab='pathway';swapIdx=null;render();}
+    else if(tab==='ranks'){activeTab='ranks';swapIdx=null;render();}
+    else{activeTab=tab;curDay=idx;swapIdx=null;render();}
+  };
+  // SWAP BAR
+  const sb=document.querySelector('[data-cswap]');
+  if(sb) sb.onclick=()=>{swapIdx=null;render();};
+  // WRAP — single delegated listener for everything inside
+  const wrap=document.querySelector('.wrap');
+  if(!wrap)return;
+  wrap.onclick=e=>{
+    // time popup
+    const tp=e.target.closest('[data-timepop]');
+    if(tp){otp(parseInt(tp.dataset.timepop));return;}
+    // checkbox
+    const chk=e.target.closest('[data-chk]');
+    if(chk){toggleCheck(chk.dataset.chk);return;}
+    // xp edit
+    const xpe=e.target.closest('[data-xpedit]');
+    if(xpe){e.stopPropagation();openXpEdit(xpe.dataset.xpedit,xpe.dataset.xpname,parseInt(xpe.dataset.xppts),xpe.dataset.xpen==='true');return;}
+    // swap
+    const sw=e.target.closest('[data-swap]');
+    if(sw){hs(parseInt(sw.dataset.swap));return;}
+    // edit block
+    const ed=e.target.closest('[data-edit]');
+    if(ed){e.stopPropagation();obe(parseInt(ed.dataset.edit));return;}
+    // delete block
+    const dl=e.target.closest('[data-del]');
+    if(dl){dblk(parseInt(dl.dataset.del));return;}
+    // add block
+    if(e.target.closest('[data-addbtn]')){oba();return;}
+    // team switch
+    const ts=e.target.closest('[data-team]');
+    if(ts){satTeam=ts.dataset.team;swapIdx=null;render();return;}
+    // pillar toggle
+    const ph=e.target.closest('[data-pillar]');
+    if(ph && !e.target.closest('[data-edititem],[data-delitem],[data-additem]')){tpl(parseInt(ph.dataset.pillar));return;}
+    // edit quote
+    if(e.target.closest('[data-editquote]')){e.stopPropagation();eqt();return;}
+    // edit stage
+    const est2=e.target.closest('[data-editstage]');
+    if(est2){e.stopPropagation();est(parseInt(est2.dataset.editstage));return;}
+    // del stage
+    const dst2=e.target.closest('[data-delstage]');
+    if(dst2){dst(parseInt(dst2.dataset.delstage));return;}
+    // add stage
+    if(e.target.closest('[data-addstage]')){ast();return;}
+    // edit item
+    const eit2=e.target.closest('[data-edititem]');
+    if(eit2){e.stopPropagation();eit(parseInt(eit2.dataset.pi),parseInt(eit2.dataset.ii));return;}
+    // del item
+    const dit2=e.target.closest('[data-delitem]');
+    if(dit2){dit(parseInt(dit2.dataset.pi),parseInt(dit2.dataset.ii));return;}
+    // add item
+    const ait2=e.target.closest('[data-additem]');
+    if(ait2){ait(parseInt(ait2.dataset.additem));return;}
+    // add pillar
+    if(e.target.closest('[data-addpillar]')){apl();return;}
+  };
 }
 
 function rTopbar(){return`<div class="topbar"><div class="logo"><span class="logo-badge">10</span>JERSEY PLAN</div><div class="sync-row"><div class="sync-dot" id="sd"></div><span id="sl">Live — all devices synced</span></div></div>`;}
 function rNav(){
-  const t=DAY_TABS.map(t=>`<button class="ntab${activeTab===t.tab?' active':''}" onclick="selDay('${t.tab}',${t.idx})">${t.short}${t.tab==='sat'?'<span class="gamedot"></span>':''}</button>`).join('');
-  return`<nav class="mainnav">${t}<button class="ntab${activeTab==='pathway'?' active':''}" onclick="selPath()">Pathway</button><button class="ntab${activeTab==='ranks'?' active':''}" onclick="selRanks()">Ranks</button></nav>`;
+  const t=DAY_TABS.map(t=>`<button class="ntab${activeTab===t.tab?' active':''}" data-nav="${t.tab}" data-idx="${t.idx}">${t.short}${t.tab==='sat'?'<span class="gamedot"></span>':''}</button>`).join('');
+  return`<nav class="mainnav" id="mainnav">${t}<button class="ntab${activeTab==='pathway'?' active':''}" data-nav="pathway">Pathway</button><button class="ntab${activeTab==='ranks'?' active':''}" data-nav="ranks">Ranks</button></nav>`;
 }
 
 function rXPCard(){
@@ -477,7 +553,7 @@ function rSched(){
   const isSat=activeTab==='sat';
   let html=rXPCard();
   html+=`<div class="dayname">${d.name}</div><div class="daysub">${d.sub}</div><span class="pill ${lp}">${d.loadLabel}</span>`;
-  if(isSat) html+=`<div class="team-switcher"><button class="ts-btn${satTeam==='1st'?' active-1st':''}" onclick="setSatTeam('1st')">🏉 1st XV — 12:00</button><button class="ts-btn${satTeam==='2nd'?' active-2nd':''}" onclick="setSatTeam('2nd')">⚡ 2nd XV — 9:20</button></div>`;
+  if(isSat) html+=`<div class="team-switcher"><button class="ts-btn${satTeam==='1st'?' active-1st':''}" data-team="1st">🏉 1st XV — 12:00</button><button class="ts-btn${satTeam==='2nd'?' active-2nd':''}" data-team="2nd">⚡ 2nd XV — 9:20</button></div>`;
   if(d.gameBanner) html+=`<div class="banner banner-game">${d.gameBanner}</div>`;
   if(d.banner2nd)  html+=`<div class="banner banner-2ndxv">${d.banner2nd}</div>`;
   if(d.note)       html+=`<div class="banner banner-note">${d.note}</div>`;
@@ -486,7 +562,7 @@ function rSched(){
     const done=isChecked(b.id),en=blockEnabled(b),pts=blockPoints(b);
     return`<div class="block${iS?' sel':iT?' tgt':''}${done?' done-block':''}${!en?' no-xp-block':''}" id="blk${i}">
       <div class="baccent" style="background:${col}"></div>
-      <div class="btimes" onclick="otp(${i})">
+      <div class="btimes" data-timepop="${i}">
         <div class="tstart">${f12(b.start)}</div>
         ${b.end?`<div class="tend">→ ${f12(b.end)}</div>`:''}
         ${dur?`<div class="tdur">${dur}</div>`:''}
@@ -494,25 +570,26 @@ function rSched(){
       <div class="bbody">
         <div class="bcat" style="color:${col}">${b.label}</div>
         <div class="bname">${b.name}</div>
-        ${b.detail?`<div class="bdetail">${b.detail}</div>`:''}
+        ${b.detail?`<div class="bdetail">${linkify(b.detail)}</div>`:''}
         ${en?`<span class="bpts-tag has-xp">${done?'✓ Done':'+'+pts+' XP'}</span>`:`<span class="bpts-tag no-xp">No XP</span>`}
+        ${b.link?`<div style="margin-top:4px"><a href="${b.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#5A9AF0;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 6px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a></div>`:''}
       </div>
       <div class="bctrls">
-        <button class="chk${done?' checked':''}${!en?' noxp-chk':''}" onclick="toggleCheck('${b.id}')" title="${done?'Uncheck':'Check off'}" ${!en?'style="opacity:.4"':''}>✓</button>
-        <button class="cbtn xp-toggle${en?' xp-on':''}" onclick="openXpEdit('${b.id}','${b.name.replace(/'/g,"\\'")}',${pts},${en},event)" title="Edit XP">⭐</button>
-        <button class="cbtn${iS?' active':''}" onclick="hs(${i})" title="Swap"><i class="ti ti-arrows-exchange"></i></button>
-        <button class="cbtn" onclick="obe(${i},event)" title="Edit"><i class="ti ti-pencil"></i></button>
-        <button class="cbtn del" onclick="dblk(${i})" title="Delete"><i class="ti ti-trash"></i></button>
+        <button class="chk${done?' checked':''}${!en?' noxp-chk':''}" data-chk="${b.id}" title="${done?'Uncheck':'Check off'}" ${!en?'style="opacity:.4"':''}>✓</button>
+        <button class="cbtn xp-toggle${en?' xp-on':''}" data-xpedit="${b.id}" data-xpname="${b.name.replace(/['"]/g,' ')}" data-xppts="${pts}" data-xpen="${en}" title="Edit XP">⭐</button>
+        <button class="cbtn${iS?' active':''}" data-swap="${i}" title="Swap"><i class="ti ti-arrows-exchange"></i></button>
+        <button class="cbtn" data-edit="${i}" title="Edit"><i class="ti ti-pencil"></i></button>
+        <button class="cbtn del" data-del="${i}" title="Delete"><i class="ti ti-trash"></i></button>
       </div>
     </div>
     <div id="tp${i}" style="display:none;position:relative;z-index:10"></div>`;
   }).join('')}</div>`;
-  html+=`<button class="addbtn" onclick="oba(event)"><i class="ti ti-plus"></i> Add block</button>`;
+  html+=`<button class="addbtn" data-addbtn="1"><i class="ti ti-plus"></i> Add block</button>`;
   if(d.science) html+=`<div class="scisec"><div class="scititle">Science behind today</div>${d.science.map(s=>`<div class="sciitem">${s}</div>`).join('')}</div>`;
   return html;
 }
 
-function rSwapBar(){return`<div class="swapbar"><i class="ti ti-arrows-exchange"></i><span>Selected: <strong>${getBlocks()[swapIdx].name}</strong> — tap another</span><button onclick="cswap()">Cancel</button></div>`;}
+function rSwapBar(){return`<div class="swapbar"><i class="ti ti-arrows-exchange"></i><span>Selected: <strong>${getBlocks()[swapIdx].name}</strong> — tap another</span><button data-cswap="1">Cancel</button></div>`;}
 
 function rRanks(){
   const xp=xpData.totalXP;
@@ -545,13 +622,13 @@ function rRanks(){
 function rPath(){
   const p=path;
   let html=`<div class="p-title">The All Black Pathway</div><div class="p-sub">First XV → All Blacks. Every step, every pillar.</div><div class="goldbar"></div>`;
-  html+=`<div class="quote-block"><span class="quote-txt">${p.quote}</span><button class="cbtn" onclick="eqt(event)" title="Edit"><i class="ti ti-pencil"></i></button></div>`;
+  html+=`<div class="quote-block"><span class="quote-txt">${p.quote}</span><button class="cbtn" data-editquote="1" title="Edit"><i class="ti ti-pencil"></i></button></div>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Stages</div>`;
-  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div></div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" onclick="est(${si},event)"><i class="ti ti-pencil"></i></button><button class="xbtn del" onclick="dst(${si})"><i class="ti ti-trash"></i></button></div></div>`).join('');
-  html+=`<button class="addbtn" onclick="ast(event)" style="margin-bottom:20px"><i class="ti ti-plus"></i> Add stage</button>`;
+  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div></div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" data-editstage="${si}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delstage="${si}"><i class="ti ti-trash"></i></button></div></div>`).join('');
+  html+=`<button class="addbtn" data-addstage="1" style="margin-bottom:20px"><i class="ti ti-plus"></i> Add stage</button>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Four Pillars</div>`;
-  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" onclick="tpl(${pi})"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}</div><div class="iacts"><button class="xbtn" onclick="eit(${pi},${ii},event)"><i class="ti ti-pencil"></i></button><button class="xbtn del" onclick="dit(${pi},${ii})"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" onclick="ait(${pi},event)"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
-  html+=`<button class="addbtn" onclick="apl(event)" style="margin-top:8px"><i class="ti ti-plus"></i> Add pillar</button>`;
+  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" data-pillar="${pi}"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}</div><div class="iacts"><button class="xbtn" data-edititem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delitem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" data-additem="${pi}"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
+  html+=`<button class="addbtn" data-addpillar="1" style="margin-top:8px"><i class="ti ti-plus"></i> Add pillar</button>`;
   return html;
 }
 
@@ -588,8 +665,7 @@ window.toggleCheck=blockId=>{
   saveXP();render();
 };
 
-window.openXpEdit=(blockId,blockName,curPts,curEnabled,ev)=>{
-  if(ev)ev.stopPropagation();
+window.openXpEdit=(blockId,blockName,curPts,curEnabled)=>{
   // Use a dedicated modal to avoid boolean coercion issues with generic showMod
   const ov=document.createElement('div');ov.className='overlay';ov.id='mo';
   const yesSelected=curEnabled?'selected':'';
@@ -609,26 +685,27 @@ window.openXpEdit=(blockId,blockName,curPts,curEnabled,ev)=>{
       <input type="number" id="xp_pts" value="${curPts}" min="1" max="200" placeholder="e.g. 20">
     </div>
     <div class="macts">
-      <button class="msave" onclick="saveXpEdit('${blockId}',${curPts})">Save</button>
-      <button class="mcancel" onclick="cmModal()">Cancel</button>
+      <button class="msave" id="xp-save-btn">Save</button>
+      <button class="mcancel" id="xp-cancel-btn">Cancel</button>
     </div>
   </div>`;
   document.body.appendChild(ov);
   setTimeout(()=>{
     ov.addEventListener('click',e=>{if(e.target===ov)cmModal();});
+    document.getElementById('xp-save-btn').onclick=()=>{
+      const enEl=document.getElementById('xp_en');
+      const ptsEl=document.getElementById('xp_pts');
+      const en=enEl?enEl.value==='yes':true;
+      const pts=parseInt(ptsEl?.value)||curPts;
+      setBlockEnabled(blockId,en);
+      setBlockPoints(blockId,pts);
+      cmModal();saveXP();render();
+    };
+    document.getElementById('xp-cancel-btn').onclick=()=>cmModal();
     const inp=document.getElementById('xp_pts');if(inp)inp.focus();
   },50);
 };
 
-window.saveXpEdit=(blockId,fallbackPts)=>{
-  const enEl=document.getElementById('xp_en');
-  const ptsEl=document.getElementById('xp_pts');
-  const en=enEl?enEl.value==='yes':true;
-  const pts=parseInt(ptsEl?.value)||fallbackPts;
-  setBlockEnabled(blockId,en);
-  setBlockPoints(blockId,pts);
-  cmModal();saveXP();render();
-};
 
 // ── SCHEDULE ACTIONS ─────────────────────────────────────────────
 window.selDay=(tab,idx)=>{activeTab=tab;curDay=idx;swapIdx=null;render();};
@@ -654,16 +731,16 @@ window.ctp=()=>{if(tpIdx!==null){const el=document.getElementById('tp'+tpIdx);if
 window.stp=i=>{const b=getBlocks()[i],s=document.getElementById('tps').value,e=document.getElementById('tpe').value;if(s)b.start=s;b.end=e;ctp();saveSched();render();};
 window.obe=(i,ev)=>{
   if(ev)ev.stopPropagation();const b=getBlocks()[i];
-  showMod('Edit block',[{id:'s',label:'Start',type:'time',val:b.start},{id:'e',label:'End',type:'time',val:b.end||''},{id:'n',label:'Name',val:b.name},{id:'d',label:'Details',type:'textarea',val:b.detail||''},{id:'c',label:'Category',type:'select',val:b.cat,opts:catOpts()}],()=>{
-    const n=gf('n');if(!n)return;const s=gf('s'),e=gf('e'),d=gf('d'),c=gf('c');
-    if(s)b.start=s;b.end=e;b.name=n;b.detail=d;b.cat=c;b.label=c;cmModal();saveSched();render();
+  showMod('Edit block',[{id:'s',label:'Start',type:'time',val:b.start},{id:'e',label:'End',type:'time',val:b.end||''},{id:'n',label:'Name',val:b.name},{id:'d',label:'Details',type:'textarea',val:b.detail||''},{id:'l',label:'Link (optional — paste any URL)',val:b.link||'',ph:'https://...'},{id:'c',label:'Category',type:'select',val:b.cat,opts:catOpts()}],()=>{
+    const n=gf('n');if(!n)return;const s=gf('s'),e=gf('e'),d=gf('d'),l=gf('l'),c=gf('c');
+    if(s)b.start=s;b.end=e;b.name=n;b.detail=d;b.link=l;b.cat=c;b.label=c;cmModal();saveSched();render();
   });
 };
 window.oba=ev=>{
   if(ev)ev.stopPropagation();
-  showMod('Add block',[{id:'s',label:'Start',type:'time'},{id:'e',label:'End',type:'time'},{id:'n',label:'Name',ph:'Session name'},{id:'d',label:'Details',type:'textarea'},{id:'c',label:'Category',type:'select',val:'routine',opts:catOpts()}],()=>{
-    const n=gf('n');if(!n)return;const st=gf('s')||'12:00',en2=gf('e'),d=gf('d'),c=gf('c');
-    const nb={id:uid(),start:st,end:en2,label:c,name:n,detail:d,cat:c};
+  showMod('Add block',[{id:'s',label:'Start',type:'time'},{id:'e',label:'End',type:'time'},{id:'n',label:'Name',ph:'Session name'},{id:'d',label:'Details',type:'textarea'},{id:'l',label:'Link (optional — paste any URL)',ph:'https://...'},{id:'c',label:'Category',type:'select',val:'routine',opts:catOpts()}],()=>{
+    const n=gf('n');if(!n)return;const st=gf('s')||'12:00',en2=gf('e'),d=gf('d'),l=gf('l'),c=gf('c');
+    const nb={id:uid(),start:st,end:en2,label:c,name:n,detail:d,link:l,cat:c};
     const B=getBlocks();const[nh,nm]=nb.start.split(':').map(Number),nx=nh*60+nm;
     let at=B.length;for(let j=0;j<B.length;j++){const[bh,bm]=B[j].start.split(':').map(Number);if(bh*60+bm>nx){at=j;break;}}
     B.splice(at,0,nb);cmModal();saveSched();render();
@@ -683,12 +760,25 @@ window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'
 // ── MODAL ────────────────────────────────────────────────────────
 function catOpts(){return[{v:'routine',l:'Routine'},{v:'team',l:'Team Training'},{v:'gym',l:'Gym'},{v:'kick',l:'Kicking'},{v:'sprint',l:'Sprint'},{v:'stretch',l:'Stretch / Recovery'},{v:'free',l:'Free Time'},{v:'sleep',l:'Sleep / Wind Down'},{v:'game',l:'Game Day'}];}
 function showMod(title,fields,onSave){
+  cmModal(); // close any existing modal first
   const ov=document.createElement('div');ov.className='overlay';ov.id='mo';
-  ov.innerHTML=`<div class="modal" onclick="event.stopPropagation()"><h3>${title}</h3>${fields.map(f=>`<div class="fg"><label>${f.label}</label>${f.type==='textarea'?`<textarea id="mf_${f.id}">${f.val||''}</textarea>`:f.type==='select'?`<select id="mf_${f.id}">${(f.opts||[]).map(o=>`<option value="${o.v}"${o.v===f.val?' selected':''}>${o.l}</option>`).join('')}</select>`:`<input type="${f.type||'text'}" id="mf_${f.id}" value="${f.val||''}" placeholder="${f.ph||''}">`}</div>`).join('')}<div class="macts"><button class="msave" onclick="window._ms()">Save</button><button class="mcancel" onclick="cmModal()">Cancel</button></div></div>`;
-  document.body.appendChild(ov);window._ms=onSave;
-  setTimeout(()=>{ov.addEventListener('click',e=>{if(e.target===ov)cmModal();});const f=document.querySelector('#mo input,#mo textarea,#mo select');if(f)f.focus();},50);
+  const fieldHtml=fields.map(f=>{
+    let inp='';
+    if(f.type==='textarea') inp=`<textarea id="mf_${f.id}" style="color-scheme:dark">${f.val||''}</textarea>`;
+    else if(f.type==='select') inp=`<select id="mf_${f.id}" style="color-scheme:dark">${(f.opts||[]).map(o=>`<option value="${o.v}"${o.v===f.val?' selected':''}>${o.l}</option>`).join('')}</select>`;
+    else inp=`<input type="${f.type||'text'}" id="mf_${f.id}" value="${f.val||''}" placeholder="${f.ph||''}" style="color-scheme:dark">`;
+    return`<div class="fg"><label>${f.label}</label>${inp}</div>`;
+  }).join('');
+  ov.innerHTML=`<div class="modal" onclick="event.stopPropagation()"><h3>${title}</h3>${fieldHtml}<div class="macts"><button class="msave" id="modal-save-btn">Save</button><button class="mcancel" onclick="cmModal()">Cancel</button></div></div>`;
+  document.body.appendChild(ov);
+  // Attach save handler directly to button — avoids window._ms string-eval issues
+  document.getElementById('modal-save-btn').addEventListener('click', onSave);
+  setTimeout(()=>{
+    ov.addEventListener('click',e=>{if(e.target===ov)cmModal();});
+    const f=document.querySelector('#mo input:not([type=time]),#mo textarea');if(f)f.focus();
+  },50);
 }
-window.cmModal=()=>{const o=document.getElementById('mo');if(o)o.remove();window._ms=null;};
+window.cmModal=()=>{const o=document.getElementById('mo');if(o)o.remove();};
 function gf(id){const el=document.getElementById('mf_'+id);return el?el.value.trim():'';}
 document.addEventListener('click',e=>{if(tpIdx!==null){const tp=document.getElementById('tp'+tpIdx),blk=document.getElementById('blk'+tpIdx);if(tp&&!tp.contains(e.target)&&blk&&!blk.querySelector('.btimes').contains(e.target))ctp();}});
 
@@ -730,6 +820,8 @@ async function init(){
     if(xpS.exists()){const p=JSON.parse(xpS.data().data);if(p){xpData=p;if(!xpData.blockSettings)xpData.blockSettings={};}}
     else{await setDoc(XP_DOC,{data:JSON.stringify(xpData)});}
     render();setupListeners();
+    // Push build version so other devices get refresh banner
+    try{await setDoc(BUILD_DOC,{version:'2025-fix-nav-xp'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
@@ -739,3 +831,4 @@ init();
 </script>
 </body>
 </html>
+
