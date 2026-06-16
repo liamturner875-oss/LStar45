@@ -856,7 +856,7 @@ function clearDoneTodos(key){
   saveTodo();render();
 }
 function resetAllTodos(){
-  if(!confirm('Clear all to-do lists for every day?\n\nThis removes all tasks from every day's list.'))return;
+  if(!confirm('Clear all to-do lists for every day?\n\nThis removes all tasks from every day\'s list.'))return;
   todoData={mon:[],tue:[],wed:[],thu:[],fri:[],sat:[],sat2:[],sun:[]};
   saveTodo();
   showToast('All to-do lists cleared 📋');
