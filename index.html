@@ -547,6 +547,10 @@ function rXPCard(){
       <div class="dp-count">${doneCount}/${xpBlocks.length}</div>
     </div>
     ${txp>0?`<div style="margin-top:6px"><span class="xp-today">+${txp} XP earned today</span></div>`:''}
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1E2230;display:flex;align-items:center;justify-content:space-between;gap:10px">
+      <span style="font-size:11px;color:#3A4050">Ticks reset each week · XP &amp; rank are permanent</span>
+      <button data-weekreset="1" style="flex-shrink:0;padding:5px 12px;border-radius:6px;border:1px solid #3A1515;background:#1A0808;color:#FF7070;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap">🔄 Reset week</button>
+    </div>
   </div>`;
 }
 
@@ -589,17 +593,7 @@ function rSched(){
   }).join('')}</div>`;
   html+=`<button class="addbtn" data-addbtn="1"><i class="ti ti-plus"></i> Add block</button>`;
   if(d.science) html+=`<div class="scisec"><div class="scititle">Science behind today</div>${d.science.map(s=>`<div class="sciitem">${s}</div>`).join('')}</div>`;
-  // Sunday only: weekly reset button
-  if(activeTab==='sun'){
-    const thisWeekChecks=Object.keys(xpData.checks||{}).filter(d2=>d2!==today()).length;
-    html+=`<div style="margin-top:20px;border-top:1px solid #1E2230;padding-top:16px">
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#6A7080;margin-bottom:8px">Weekly Reset</div>
-      <div style="font-size:12px;color:#6A7080;margin-bottom:12px;line-height:1.5">Tap this at the end of each week to clear this week's checkmarks so you can earn XP fresh next week. Your total XP and rank are <strong style="color:#E8EAF0">never</strong> reset — only the ticks.</div>
-      <button data-weekreset="1" style="width:100%;padding:11px;border-radius:7px;border:1px solid #4A1515;background:#200A0A;color:#FF7070;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .15s">
-        🔄 Reset this week's checkmarks
-      </button>
-    </div>`;
-  }
+
   return html;
 }
 
@@ -773,14 +767,11 @@ window.ait=(pi,ev)=>{if(ev)ev.stopPropagation();showMod('Add item',[{id:'t',labe
 window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'Name',ph:'e.g. Nutrition'},{id:'d',label:'Description',ph:'Short description'},{id:'e',label:'Emoji icon',ph:'🔥'}],()=>{const n=gf('n');if(!n)return;path.pillars.push({id:uid(),icon:gf('e')||'📌',color:'#2A6FD4',bg:'#0D1520',name:n,desc:gf('d'),items:[],open:true});cmModal();savePath();render();});};
 // ── WEEKLY RESET ─────────────────────────────────────────────────
 function weekReset(){
-  if(!confirm('Reset all checkmarks from this week?\n\nYour total XP and rank are kept — only the ticks are cleared so you can earn XP again next week.'))return;
-  const t=today();
-  const kept={};
-  // Keep only today's checks (Sunday itself), clear everything before
-  if(xpData.checks[t]) kept[t]=xpData.checks[t];
-  xpData.checks=kept;
+  if(!confirm('Reset checkmarks for a fresh week?\n\nYour total XP and rank are PERMANENT — only the ticks clear so you can earn XP again. You can do this as many times as you want.'))return;
+  // Clear all past check dates entirely — XP total is untouched
+  xpData.checks={};
   saveXP();
-  showToast('Week reset! Fresh start 🔄');
+  showToast('Fresh week! All ticks cleared 🔄');
   render();
 }
 
@@ -848,7 +839,7 @@ async function init(){
     else{await setDoc(XP_DOC,{data:JSON.stringify(xpData)});}
     render();setupListeners();
     // Push build version so other devices get refresh banner
-    try{await setDoc(BUILD_DOC,{version:'2025-reset-btn-startxp'});}catch(e){}
+    try{await setDoc(BUILD_DOC,{version:'2025-xp-reset-anywhere'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
