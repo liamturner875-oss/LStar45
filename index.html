@@ -244,6 +244,8 @@ const db=getFirestore(fbApp);
 const SCHED_DOC=doc(db,"jersey10","schedule");
 const PATH_DOC=doc(db,"jersey10","pathway");
 const XP_DOC=doc(db,"jersey10","xp");
+const TODO_DOC=doc(db,"jersey10","todos");
+const BUILD_DOC=doc(db,"jersey10","build");
 
 // ── HELPERS ──────────────────────────────────────────────────────
 function td(s,e){if(!s||!e)return'';const[sh,sm]=s.split(':').map(Number);const[eh,em]=e.split(':').map(Number);let d=(eh*60+em)-(sh*60+sm);if(d<0)d+=1440;if(!d)return'';const h=Math.floor(d/60),m=d%60;return h&&m?`${h}h ${m}m`:h?`${h}h`:`${m}m`;}
@@ -899,7 +901,6 @@ function gf(id){const el=document.getElementById('mf_'+id);return el?el.value.tr
 document.addEventListener('click',e=>{if(tpIdx!==null){const tp=document.getElementById('tp'+tpIdx),blk=document.getElementById('blk'+tpIdx);if(tp&&!tp.contains(e.target)&&blk&&!blk.querySelector('.btimes').contains(e.target))ctp();}});
 
 // ── AUTO-REFRESH (checks for new version every 10 min) ───────────
-const BUILD_DOC=doc(db,"jersey10","build");
 let currentBuild=null;
 async function checkForUpdate(){
   try{
