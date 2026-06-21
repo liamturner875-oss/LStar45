@@ -537,6 +537,12 @@ function attachHandlers(){
     if(ait2){ait(parseInt(ait2.dataset.additem));return;}
     // add pillar
     if(e.target.closest('[data-addpillar]')){apl();return;}
+    // edit pillar
+    const epl2=e.target.closest('[data-editpillar]');
+    if(epl2){e.stopPropagation();epl(parseInt(epl2.dataset.editpillar));return;}
+    // delete pillar
+    const dpl2=e.target.closest('[data-delpillar]');
+    if(dpl2){e.stopPropagation();dpl(parseInt(dpl2.dataset.delpillar));return;}
     // weekly reset (ticks)
     if(e.target.closest('[data-weekreset]')){weekReset();return;}
     // weekly reset (todos)
@@ -696,10 +702,10 @@ function rPath(){
   let html=`<div class="p-title">The All Black Pathway</div><div class="p-sub">First XV → All Blacks. Every step, every pillar.</div><div class="goldbar"></div>`;
   html+=`<div class="quote-block"><span class="quote-txt">${p.quote}</span><button class="cbtn" data-editquote="1" title="Edit"><i class="ti ti-pencil"></i></button></div>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Stages</div>`;
-  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div></div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" data-editstage="${si}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delstage="${si}"><i class="ti ti-trash"></i></button></div></div>`).join('');
+  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div>${s.link?`<a href="${s.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:3px;margin-top:5px;font-size:11px;color:#5A9AF0;text-decoration:none;padding:2px 7px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a>`:''}</div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" data-editstage="${si}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delstage="${si}"><i class="ti ti-trash"></i></button></div></div>`).join('');
   html+=`<button class="addbtn" data-addstage="1" style="margin-bottom:20px"><i class="ti ti-plus"></i> Add stage</button>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Four Pillars</div>`;
-  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" data-pillar="${pi}"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}</div><div class="iacts"><button class="xbtn" data-edititem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delitem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" data-additem="${pi}"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
+  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" data-pillar="${pi}"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><div style="display:flex;align-items:center;gap:4px"><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i><button class="xbtn" data-editpillar="${pi}" style="margin-left:4px" title="Edit pillar"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delpillar="${pi}" title="Delete pillar"><i class="ti ti-trash"></i></button></div></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${it.link?`<a href="${it.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#5A9AF0;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a>`:''}${it.link?'':''}  </div></div><div class="iacts"><button class="xbtn" data-edititem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delitem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" data-additem="${pi}"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
   html+=`<button class="addbtn" data-addpillar="1" style="margin-top:8px"><i class="ti ti-plus"></i> Add pillar</button>`;
   return html;
 }
@@ -822,13 +828,15 @@ window.dblk=i=>{if(!confirm('Delete this block?'))return;getBlocks().splice(i,1)
 // ── PATHWAY ACTIONS ──────────────────────────────────────────────
 window.tpl=pi=>{path.pillars[pi].open=!path.pillars[pi].open;savePath();render();};
 window.eqt=ev=>{if(ev)ev.stopPropagation();showMod('Edit quote',[{id:'q',label:'Quote',type:'textarea',val:path.quote}],()=>{const q=gf('q');if(q)path.quote=q;cmModal();savePath();render();});};
-window.est=(si,ev)=>{if(ev)ev.stopPropagation();const s=path.stages[si];showMod('Edit stage',[{id:'t',label:'Title',val:s.title},{id:'d',label:'Detail',type:'textarea',val:s.detail},{id:'b',label:'Badge',val:s.badge}],()=>{const t=gf('t'),d=gf('d'),b=gf('b');if(t)s.title=t;s.detail=d;if(b)s.badge=b;cmModal();savePath();render();});};
+window.est=(si,ev)=>{if(ev)ev.stopPropagation();const s=path.stages[si];showMod('Edit stage',[{id:'t',label:'Title',val:s.title},{id:'d',label:'Detail',type:'textarea',val:s.detail},{id:'b',label:'Badge',val:s.badge},{id:'l',label:'Link (optional)',val:s.link||'',ph:'https://...'}],()=>{const t=gf('t'),d=gf('d'),b=gf('b');if(t)s.title=t;s.detail=d;if(b)s.badge=b;s.link=gf('l');cmModal();savePath();render();});};
 window.dst=si=>{if(!confirm('Delete stage?'))return;path.stages.splice(si,1);savePath();render();};
-window.ast=ev=>{if(ev)ev.stopPropagation();showMod('Add stage',[{id:'t',label:'Title',ph:'Stage name'},{id:'d',label:'Detail',type:'textarea'},{id:'b',label:'Badge',ph:'e.g. Age 18–20'}],()=>{const t=gf('t');if(!t)return;path.stages.push({id:uid(),title:t,detail:gf('d'),badge:gf('b')||'',bc:'#2A6FD4',bb:'#0D1520'});cmModal();savePath();render();});};
-window.eit=(pi,ii,ev)=>{if(ev)ev.stopPropagation();const it=path.pillars[pi].items[ii];showMod('Edit item',[{id:'t',label:'Title',val:it.text},{id:'s',label:'Sub-text',type:'textarea',val:it.sub||''}],()=>{const t=gf('t');if(t)it.text=t;it.sub=gf('s');cmModal();savePath();render();});};
+window.ast=ev=>{if(ev)ev.stopPropagation();showMod('Add stage',[{id:'t',label:'Title',ph:'Stage name'},{id:'d',label:'Detail',type:'textarea'},{id:'b',label:'Badge',ph:'e.g. Age 18–20'},{id:'l',label:'Link (optional)',ph:'https://...'}],()=>{const t=gf('t');if(!t)return;path.stages.push({id:uid(),title:t,detail:gf('d'),badge:gf('b')||'',link:gf('l'),bc:'#2A6FD4',bb:'#0D1520'});cmModal();savePath();render();});};
+window.eit=(pi,ii,ev)=>{if(ev)ev.stopPropagation();const it=path.pillars[pi].items[ii];showMod('Edit item',[{id:'t',label:'Title',val:it.text},{id:'s',label:'Sub-text',type:'textarea',val:it.sub||''},{id:'l',label:'Link (optional)',val:it.link||'',ph:'https://...'}],()=>{const t=gf('t');if(t)it.text=t;it.sub=gf('s');it.link=gf('l');cmModal();savePath();render();});};
 window.dit=(pi,ii)=>{if(!confirm('Delete item?'))return;path.pillars[pi].items.splice(ii,1);savePath();render();};
-window.ait=(pi,ev)=>{if(ev)ev.stopPropagation();showMod('Add item',[{id:'t',label:'Title',ph:'Item title'},{id:'s',label:'Sub-text',type:'textarea',ph:'Details, cues...'}],()=>{const t=gf('t');if(!t)return;path.pillars[pi].items.push({id:uid(),text:t,sub:gf('s')});cmModal();savePath();render();});};
+window.ait=(pi,ev)=>{if(ev)ev.stopPropagation();showMod('Add item',[{id:'t',label:'Title',ph:'Item title'},{id:'s',label:'Sub-text',type:'textarea',ph:'Details, cues...'},{id:'l',label:'Link (optional)',ph:'https://...'}],()=>{const t=gf('t');if(!t)return;path.pillars[pi].items.push({id:uid(),text:t,sub:gf('s'),link:gf('l')});cmModal();savePath();render();});};
 window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'Name',ph:'e.g. Nutrition'},{id:'d',label:'Description',ph:'Short description'},{id:'e',label:'Emoji icon',ph:'🔥'}],()=>{const n=gf('n');if(!n)return;path.pillars.push({id:uid(),icon:gf('e')||'📌',color:'#2A6FD4',bg:'#0D1520',name:n,desc:gf('d'),items:[],open:true});cmModal();savePath();render();});};
+window.epl=(pi,ev)=>{if(ev)ev.stopPropagation();const pl=path.pillars[pi];showMod('Edit pillar',[{id:'n',label:'Name',val:pl.name},{id:'d',label:'Description',val:pl.desc},{id:'e',label:'Emoji icon',val:pl.icon}],()=>{const n=gf('n');if(n)pl.name=n;pl.desc=gf('d');const e=gf('e');if(e)pl.icon=e;cmModal();savePath();render();});};
+window.dpl=pi=>{if(!confirm('Delete this entire pillar and all its items?'))return;path.pillars.splice(pi,1);savePath();render();};
 // ── TO-DO LIST ───────────────────────────────────────────────────
 function addTodo(key){
   const inp=document.getElementById('todo-inp-'+key);
@@ -941,13 +949,16 @@ async function init(){
     else{await setDoc(TODO_DOC,{data:JSON.stringify(todoData)});}
     render();setupListeners();
     // Push build version so other devices get refresh banner
-    try{await setDoc(BUILD_DOC,{version:'2025-non-negotiables-v2'});}catch(e){}
+    try{await setDoc(BUILD_DOC,{version:'2025-pathway-edit-links'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
   }
 }
 init();
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
