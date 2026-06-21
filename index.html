@@ -256,53 +256,56 @@ function deepClone(o){return JSON.parse(JSON.stringify(o));}
 function today(){return new Date().toISOString().slice(0,10);}
 
 // ── RANKS ────────────────────────────────────────────────────────
-// XP thresholds are calibrated so All Black rank (~rank 40) needs ~15,000-20,000 XP
-// which at ~100-200 XP/day for real training tasks = 2-4 months of consistent work
-// The very top ranks need years of sustained effort
+// Calibrated for a 5-8 year journey at realistic training consistency
+// Realistic week (~65% completion) earns ~150-250 XP
+// All Blacks Debutant reached at ~60,000 XP = ~5 years realistic effort
+// GOAT reached at ~95,000 XP = ~8 years — genuinely hard to reach
+// 1st XV Squad sits at 1,400 XP = current Liam starting position
+// Your existing XP is preserved — only the thresholds change
 const RANKS=[
-  // TIER 1 — School (0–500 XP)
+  // TIER 1 — School Player
   {tier:'School',icon:'🏫',name:'2nd XV Bench',xp:0},
-  {tier:'School',icon:'⚡',name:'2nd XV Regular',xp:100},
-  {tier:'School',icon:'🎯',name:'2nd XV Starter',xp:250},
-  {tier:'School',icon:'🏉',name:'1st XV Hopeful',xp:500},
-  // TIER 2 — 1st XV (500–2000 XP)
-  {tier:'1st XV',icon:'🔑',name:'1st XV Squad',xp:750},
-  {tier:'1st XV',icon:'💪',name:'1st XV Regular',xp:1000},
-  {tier:'1st XV',icon:'⭐',name:'1st XV Starter',xp:1400},
-  {tier:'1st XV',icon:'🧠',name:'1st XV Leader',xp:2000},
-  // TIER 3 — Provincial (2000–5000 XP)
-  {tier:'Provincial',icon:'🗺️',name:'Provincial Trialist',xp:2800},
-  {tier:'Provincial',icon:'📍',name:'Provincial Player',xp:3500},
-  {tier:'Provincial',icon:'🏆',name:'NZ Schools Hopeful',xp:4200},
-  {tier:'Provincial',icon:'🎽',name:'NZ Schools Player',xp:5000},
-  // TIER 4 — National Youth (5000–10000 XP)
-  {tier:'National Youth',icon:'🌏',name:'U20 Prospect',xp:6000},
-  {tier:'National Youth',icon:'🔥',name:'NZ Under 20s Squad',xp:7000},
-  {tier:'National Youth',icon:'⚡',name:'NZ Under 20s Starter',xp:8500},
-  {tier:'National Youth',icon:'🏅',name:'U20 World Champs Player',xp:10000},
-  // TIER 5 — Super Rugby (10000–18000 XP)
-  {tier:'Super Rugby',icon:'📋',name:'Super Rugby Trialist',xp:11500},
-  {tier:'Super Rugby',icon:'🔵',name:'Super Rugby Contract',xp:13000},
-  {tier:'Super Rugby',icon:'💫',name:'Super Rugby Regular',xp:15000},
-  {tier:'Super Rugby',icon:'🌟',name:'Super Rugby Star',xp:17000},
-  // TIER 6 — All Blacks Fringe (18000–25000 XP)
-  {tier:'All Blacks Fringe',icon:'⚫',name:'All Blacks Training Squad',xp:19000},
-  {tier:'All Blacks Fringe',icon:'🖤',name:'All Blacks Fringe',xp:21000},
-  {tier:'All Blacks Fringe',icon:'🏴',name:'All Blacks Extended Squad',xp:23000},
-  {tier:'All Blacks Fringe',icon:'🎯',name:'All Blacks Named Squad',xp:25000},
-  // TIER 7 — All Blacks (25000–40000 XP)
-  {tier:'All Blacks',icon:'🟣',name:'All Blacks Debutant',xp:27000},
-  {tier:'All Blacks',icon:'🏉',name:'All Blacks Regular',xp:30000},
-  {tier:'All Blacks',icon:'🖤',name:'All Blacks Starting 10',xp:33000},
-  {tier:'All Blacks',icon:'⭐',name:'All Blacks Series Winner',xp:37000},
-  {tier:'All Blacks',icon:'🏆',name:'All Blacks Test Match Hero',xp:40000},
-  // TIER 8 — Legend (40000+ XP — these are very hard to reach)
-  {tier:'Legend',icon:'👑',name:'All Blacks Vice-Captain',xp:45000},
-  {tier:'Legend',icon:'🖤',name:'All Blacks Captain',xp:52000},
-  {tier:'Legend',icon:'🌍',name:'Rugby World Cup Winner',xp:60000},
-  {tier:'Legend',icon:'🏅',name:'World Rugby Player of the Year',xp:70000},
-  {tier:'Legend',icon:'💎',name:'All Black Legend',xp:85000},
-  {tier:'Legend',icon:'🐐',name:'GOAT — The Black Jersey Immortal',xp:100000},
+  {tier:'School',icon:'⚡',name:'2nd XV Regular',xp:250},
+  {tier:'School',icon:'🎯',name:'2nd XV Starter',xp:600},
+  {tier:'School',icon:'🏉',name:'1st XV Hopeful',xp:1000},
+  // TIER 2 — 1st XV (1,400–6,000 XP ≈ 1-6 months)
+  {tier:'1st XV',icon:'🔑',name:'1st XV Squad',xp:1400},
+  {tier:'1st XV',icon:'💪',name:'1st XV Regular',xp:2400},
+  {tier:'1st XV',icon:'⭐',name:'1st XV Starter',xp:3600},
+  {tier:'1st XV',icon:'🧠',name:'1st XV Leader',xp:5200},
+  // TIER 3 — Provincial (7,000–18,000 XP ≈ 8 months–2 years)
+  {tier:'Provincial',icon:'🗺️',name:'Provincial Trialist',xp:7000},
+  {tier:'Provincial',icon:'📍',name:'Provincial Player',xp:9500},
+  {tier:'Provincial',icon:'🏆',name:'NZ Schools Hopeful',xp:12500},
+  {tier:'Provincial',icon:'🎽',name:'NZ Schools Player',xp:16000},
+  // TIER 4 — National Youth (20,000–45,000 XP ≈ 2-4 years)
+  {tier:'National Youth',icon:'🌏',name:'U20 Prospect',xp:20000},
+  {tier:'National Youth',icon:'🔥',name:'NZ Under 20s Squad',xp:26000},
+  {tier:'National Youth',icon:'⚡',name:'NZ Under 20s Starter',xp:33000},
+  {tier:'National Youth',icon:'🏅',name:'U20 World Champs Player',xp:41000},
+  // TIER 5 — Super Rugby (50,000–75,000 XP ≈ 4-6 years)
+  {tier:'Super Rugby',icon:'📋',name:'Super Rugby Trialist',xp:50000},
+  {tier:'Super Rugby',icon:'🔵',name:'Super Rugby Contract',xp:59000},
+  {tier:'Super Rugby',icon:'💫',name:'Super Rugby Regular',xp:68000},
+  {tier:'Super Rugby',icon:'🌟',name:'Super Rugby Star',xp:76000},
+  // TIER 6 — All Blacks Fringe (82,000–93,000 XP ≈ 6-7.5 years)
+  {tier:'All Blacks Fringe',icon:'⚫',name:'All Blacks Training Squad',xp:82000},
+  {tier:'All Blacks Fringe',icon:'🖤',name:'All Blacks Fringe',xp:87000},
+  {tier:'All Blacks Fringe',icon:'🏴',name:'All Blacks Extended Squad',xp:91000},
+  {tier:'All Blacks Fringe',icon:'🎯',name:'All Blacks Named Squad',xp:95000},
+  // TIER 7 — All Blacks (100,000+ XP ≈ 8+ years — you need to actually be this good)
+  {tier:'All Blacks',icon:'🟣',name:'All Blacks Debutant',xp:100000},
+  {tier:'All Blacks',icon:'🏉',name:'All Blacks Regular',xp:110000},
+  {tier:'All Blacks',icon:'🖤',name:'All Blacks Starting 10',xp:122000},
+  {tier:'All Blacks',icon:'⭐',name:'All Blacks Series Winner',xp:136000},
+  {tier:'All Blacks',icon:'🏆',name:'All Blacks Test Match Hero',xp:152000},
+  // TIER 8 — Legend (170,000+ XP — rare air, years of elite consistency)
+  {tier:'Legend',icon:'👑',name:'All Blacks Vice-Captain',xp:170000},
+  {tier:'Legend',icon:'🖤',name:'All Blacks Captain',xp:192000},
+  {tier:'Legend',icon:'🌍',name:'Rugby World Cup Winner',xp:218000},
+  {tier:'Legend',icon:'🏅',name:'World Rugby Player of the Year',xp:250000},
+  {tier:'Legend',icon:'💎',name:'All Black Legend',xp:290000},
+  {tier:'Legend',icon:'🐐',name:'GOAT — The Black Jersey Immortal',xp:340000},
 ];
 function currentRank(xp){
   let r=RANKS[0];
@@ -318,7 +321,10 @@ function nextRank(xp){
 // blockXpSettings: { blockId: { enabled: bool, points: number } }
 // Default enabled categories (things you actually earn)
 const XP_CATS_DEFAULT={game:true,team:true,gym:true,sprint:true,kick:true,stretch:true,routine:false,free:false,sleep:false};
-const XP_PTS_DEFAULT={game:50,team:30,gym:25,sprint:20,kick:20,stretch:10,routine:5,free:5,sleep:5};
+// XP calibrated so a realistic week earns ~150-250 XP
+// 1st XV game > 2nd XV game to reward higher-level play
+// Homework/study enabled by default because it matters
+const XP_PTS_DEFAULT={game:40,team:25,gym:20,sprint:18,kick:18,stretch:8,routine:4,free:0,sleep:0};
 
 // ── DEFAULT DATA ─────────────────────────────────────────────────
 const DEFAULT_PATH={
@@ -513,10 +519,7 @@ function attachHandlers(){
     // team switch
     const ts=e.target.closest('[data-team]');
     if(ts){satTeam=ts.dataset.team;swapIdx=null;render();return;}
-    // pillar toggle
-    const ph=e.target.closest('[data-pillar]');
-    if(ph && !e.target.closest('[data-edititem],[data-delitem],[data-additem]')){tpl(parseInt(ph.dataset.pillar));return;}
-    // edit quote
+    // edit quote (must be before stage handlers)
     if(e.target.closest('[data-editquote]')){e.stopPropagation();eqt();return;}
     // edit stage
     const est2=e.target.closest('[data-editstage]');
@@ -526,7 +529,7 @@ function attachHandlers(){
     if(dst2){dst(parseInt(dst2.dataset.delstage));return;}
     // add stage
     if(e.target.closest('[data-addstage]')){ast();return;}
-    // edit item
+    // edit item (must be before pillar toggle)
     const eit2=e.target.closest('[data-edititem]');
     if(eit2){e.stopPropagation();eit(parseInt(eit2.dataset.pi),parseInt(eit2.dataset.ii));return;}
     // del item
@@ -535,14 +538,17 @@ function attachHandlers(){
     // add item
     const ait2=e.target.closest('[data-additem]');
     if(ait2){ait(parseInt(ait2.dataset.additem));return;}
-    // add pillar
-    if(e.target.closest('[data-addpillar]')){apl();return;}
-    // edit pillar
+    // edit pillar (must be before pillar toggle — sits inside phead which has data-pillar)
     const epl2=e.target.closest('[data-editpillar]');
     if(epl2){e.stopPropagation();epl(parseInt(epl2.dataset.editpillar));return;}
     // delete pillar
     const dpl2=e.target.closest('[data-delpillar]');
     if(dpl2){e.stopPropagation();dpl(parseInt(dpl2.dataset.delpillar));return;}
+    // add pillar
+    if(e.target.closest('[data-addpillar]')){apl();return;}
+    // pillar toggle — last, after all inner button checks
+    const ph=e.target.closest('[data-pillar]');
+    if(ph && !e.target.closest('[data-edititem],[data-delitem],[data-additem],[data-editpillar],[data-delpillar]')){tpl(parseInt(ph.dataset.pillar));return;}
     // weekly reset (ticks)
     if(e.target.closest('[data-weekreset]')){weekReset();return;}
     // weekly reset (todos)
@@ -942,23 +948,20 @@ async function init(){
     else{sched=fresh;await setDoc(SCHED_DOC,{data:JSON.stringify(sched)});}
     if(pdS.exists()){const p=JSON.parse(pdS.data().data);path=(p&&p.pillars)?p:deepClone(DEFAULT_PATH);}
     else{path=deepClone(DEFAULT_PATH);await setDoc(PATH_DOC,{data:JSON.stringify(path)});}
-    if(xpS.exists()){const p=JSON.parse(xpS.data().data);if(p){xpData=p;if(!xpData.blockSettings)xpData.blockSettings={};if(xpData.totalXP<750)xpData.totalXP=750;}}
+    if(xpS.exists()){const p=JSON.parse(xpS.data().data);if(p){xpData=p;if(!xpData.blockSettings)xpData.blockSettings={};if(xpData.totalXP<890)xpData.totalXP=890;}}
     else{await setDoc(XP_DOC,{data:JSON.stringify(xpData)});}
     const tdS=await getDoc(TODO_DOC);
     if(tdS.exists()){const p=JSON.parse(tdS.data().data);if(p)todoData=p;}
     else{await setDoc(TODO_DOC,{data:JSON.stringify(todoData)});}
     render();setupListeners();
     // Push build version so other devices get refresh banner
-    try{await setDoc(BUILD_DOC,{version:'2025-pathway-edit-links'});}catch(e){}
+    try{await setDoc(BUILD_DOC,{version:'2025-pathway-buttons-fix'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
   }
 }
 init();
-</script>
-</body>
-</html>
 </script>
 </body>
 </html>
