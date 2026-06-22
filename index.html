@@ -953,9 +953,56 @@ async function init(){
     const tdS=await getDoc(TODO_DOC);
     if(tdS.exists()){const p=JSON.parse(tdS.data().data);if(p)todoData=p;}
     else{await setDoc(TODO_DOC,{data:JSON.stringify(todoData)});}
+    // ── MIGRATE: Update Wednesday blocks in Firebase ─────────────────
+    // This runs once to push the new Wednesday schedule live
+    const MIGRATION_KEY = 'jersey10-wed-migration-v3';
+    const migDoc = doc(db,'jersey10','migrations');
+    let migDone = false;
+    try{ const ms = await getDoc(migDoc); if(ms.exists()&&ms.data()[MIGRATION_KEY])migDone=true; }catch(e){}
+    if(!migDone && sched){
+      // Build the new Wednesday blocks
+      const newWedBlocks = [
+        {id:'wm-hrv',    start:"05:45",end:"05:50",label:"hrv",         name:"Morning HRV check",                    detail:"Check before getting up. Biggest training day — low HRV means scale back, don't skip.",                                                                                                                                         cat:"routine"},
+        {id:'wm-wake',   start:"05:50",end:"06:30",label:"wake up",     name:"Early wake up",                        detail:"Hydration + banana. Kit ready the night before.",                                                                                                                                                                            cat:"routine"},
+        {id:'wm-trav',   start:"06:40",end:"07:00",label:"travel",      name:"Travel to morning session",            detail:"Arrive 5 min early.",                                                                                                                                                                                                        cat:"routine"},
+        {id:'wm-team',   start:"07:00",end:"08:15",label:"team",        name:"Morning team session (optional)",      detail:"Full engagement. Kicking covered here so afternoon is free for gym and speed. ~75 min.",                                                                                                                                        cat:"team"},
+        {id:'wm-sch',    start:"08:20",end:"08:45",label:"school",      name:"Head to school",                       detail:"Recovery snack. Commute.",                                                                                                                                                                                                   cat:"routine"},
+        {id:'wm-fuel',   start:"16:30",end:"16:45",label:"home",        name:"Home — fuel up",                       detail:"High-carb snack immediately: banana + peanut butter or rice cakes. Three sessions ahead. Change into kit.",                                                                                                                     cat:"routine"},
+        {id:'wm-proc',   start:"16:45",end:"16:48",label:"process",     name:"Process goals — 3 for today",         detail:"Speed: full effort every rep. Gym: beat last week on at least one lift. Conditioning: don't quit early.",                                                                                                                       cat:"routine"},
+        {id:'wm-spd',    start:"16:48",end:"17:10",label:"sprint",      name:"Speed session — acceleration work",   detail:"Dynamic warm-up 5 min → 6×20m standing start at 100% (90s full rest between) → 4×10m reaction starts. 22 min total. Pure first-step speed — short enough to keep CNS fresh for gym.",                                         cat:"sprint"},
+        {id:'wm-str1',   start:"17:10",end:"17:30",label:"stretch",     name:"Mobility + gym activation",           detail:"Hip flexors, thoracic rotation, shoulder CARs. Doubles as warm-up for gym. 20 min.",                                                                                                                                             cat:"stretch"},
+        {id:'wm-gym',    start:"17:30",end:"18:35",label:"gym",         name:"Gym — upper body + accessory",        detail:"Bench press 4×6 → Weighted chin-ups 4×5 → DB shoulder press 3×10 → Cable rows 3×12 → Rotator cuff work 3×15 → Face pulls 3×15 → Nordic curls 3×6. 65 min. Upper body — complements Monday lower body split.",                 cat:"gym"},
+        {id:'wm-cond',   start:"18:35",end:"18:55",label:"conditioning",name:"Conditioning finisher",               detail:"4 rounds: 10× box jumps → 10× med ball slams → 10× burpees → 45s rest. ~20 min. Raises growth hormone, builds repeat effort capacity. Scale to how body feels — skip if genuinely empty.",                                      cat:"sprint"},
+        {id:'wm-str2',   start:"18:55",end:"19:10",label:"stretch",     name:"Post-session full stretch",           detail:"Full body static holds. Hamstrings, hip flexors, thoracic, calves. 10 min minimum. Non-negotiable after this day.",                                                                                                              cat:"stretch"},
+        {id:'wm-din',    start:"19:15",end:"20:00",label:"dinner",      name:"Dinner + shower",                     detail:"Big recovery meal: protein + carbs + veg. Shower. You need fuel after three sessions.",                                                                                                                                          cat:"routine"},
+        {id:'wm-free',   start:"20:00",end:"21:20",label:"free",        name:"Free time",                           detail:"Girlfriend, gaming, rest. Shorter tonight — you've done a lot.",                                                                                                                                                                 cat:"free"},
+        {id:'wm-jrnl',   start:"21:20",end:"21:25",label:"journal",     name:"Training journal",                    detail:"Log any gym PRs, sprint times, conditioning rating 1-10.",                                                                                                                                                                      cat:"routine"},
+        {id:'wm-study',  start:"21:30",end:"22:00",label:"study",       name:"Study",                               detail:"30 min.",                                                                                                                                                                                                                       cat:"routine"},
+        {id:'wm-wind',   start:"22:00",end:"22:30",label:"wind down",   name:"Wind down",                           detail:"Prioritise sleep — three sessions is significant CNS load.",                                                                                                                                                                     cat:"sleep"},
+        {id:'wm-sleep',  start:"22:30",end:"06:30",label:"sleep",       name:"Lights out",                          detail:"8+ hours. Thursday team tomorrow.",                                                                                                                                                                                              cat:"sleep"}
+      ];
+      sched[2].blocks = newWedBlocks;
+      sched[2].load = "high";
+      sched[2].loadLabel = "High — team + speed + gym + conditioning";
+      sched[2].sub = "Biggest training volume day. Team in the morning covers kicking — afternoon is speed, gym, and conditioning.";
+      sched[2].note = "Early start if doing 7am — wake 5:45. Kicking done at morning team session.";
+      sched[2].science = [
+        "Kicking covered in morning team session — afternoon free for strength and conditioning work",
+        "Speed acceleration before gym is fine at low volume — CNS recovers within minutes at 6×20m",
+        "Upper body gym Wednesday has no conflict with Monday lower body — 48h+ recovery window",
+        "Metabolic conditioning finisher raises growth hormone and builds repeat effort capacity",
+        "Midweek is optimal for volume work — Tuesday fatigue cleared, Thursday not yet arrived"
+      ];
+      try{
+        await setDoc(SCHED_DOC,{data:JSON.stringify(sched)});
+        await setDoc(migDoc,{[MIGRATION_KEY]:true});
+        showToast('Wednesday updated! 🏋️');
+      }catch(e){console.error('Migration failed:',e);}
+    }
+    // ── END MIGRATION ────────────────────────────────────────────────
     render();setupListeners();
     // Push build version so other devices get refresh banner
-    try{await setDoc(BUILD_DOC,{version:'2025-wednesday-sessions'});}catch(e){}
+    try{await setDoc(BUILD_DOC,{version:'2025-wed-live-migration'});}catch(e){}
     checkForUpdate();setInterval(checkForUpdate,600000);
   }catch(e){
     document.getElementById('app').innerHTML=`<div class="loading-screen"><span style="color:#FF7070">Firebase error: ${e.message}</span></div>`;
