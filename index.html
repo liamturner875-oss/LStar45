@@ -11,25 +11,25 @@
 body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:100vh}
 .topbar{background:#13161C;border-bottom:1px solid #1E2230;padding:0 16px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:52px}
 .logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;letter-spacing:.04em;color:#E8EAF0;display:flex;align-items:center;gap:8px}
-.logo-badge{background:#D4A017;color:#000;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.08em}
+.logo-badge{background:#7958FF;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.08em}
 .sync-row{display:flex;align-items:center;gap:5px;font-size:11px;color:#6A7080}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:#2E8B3A;flex-shrink:0}
-.sync-dot.saving{background:#BA7517}.sync-dot.syncing{background:#2A6FD4}.sync-dot.error{background:#8A2020}
+.sync-dot.saving{background:#BA7517}.sync-dot.syncing{background:#7958FF}.sync-dot.error{background:#8A2020}
 .mainnav{background:#13161C;border-bottom:1px solid #1E2230;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px;position:sticky;top:52px;z-index:90}
 .mainnav::-webkit-scrollbar{display:none}
 .ntab{padding:13px 13px 11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#6A7080;cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;position:relative}
 .ntab:hover{color:#C0C6D4}
-.ntab.active{color:#E8EAF0;border-bottom-color:#D4A017}
+.ntab.active{color:#E8EAF0;border-bottom-color:#7958FF}
 .gamedot{width:5px;height:5px;border-radius:50%;background:#8A2020;position:absolute;top:7px;right:5px}
 .wrap{max-width:680px;margin:0 auto;padding:18px 14px 100px}
 /* XP CARD */
 .xp-card{background:#13161C;border:1px solid #1E2230;border-radius:10px;padding:14px 16px;margin-bottom:16px}
 .xp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.xp-level{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.06em;color:#D4A017}
+.xp-level{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.06em;color:#7958FF}
 .xp-streak{font-size:12px;color:#6A7080;display:flex;align-items:center;gap:4px}
 .xp-streak span{color:#E8714A;font-weight:600}
 .xp-bar-wrap{background:#0F1117;border-radius:4px;height:8px;overflow:hidden;margin-bottom:6px}
-.xp-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#D4A017,#E8C84A);transition:width .4s ease}
+.xp-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#7958FF,#A78BFA);transition:width .4s ease}
 .xp-nums{display:flex;justify-content:space-between;font-size:11px;color:#6A7080}
 .xp-today{font-size:11px;color:#4ABF6A;font-weight:600}
 .day-progress{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #1E2230}
@@ -44,7 +44,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .daysub{font-size:13px;color:#6A7080;margin-top:4px}
 .pill{display:inline-flex;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-top:8px}
 .pill-high{background:#2A1008;color:#E8714A;border:1px solid #5A2010}
-.pill-medium{background:#1A1508;color:#D4A017;border:1px solid #4A3A08}
+.pill-medium{background:#1A1B22;color:#A8AEBC;border:1px solid #383C48}
 .pill-rest{background:#0A1A0A;color:#4ABF6A;border:1px solid #1A4A1A}
 .pill-game{background:#2A0808;color:#FF7070;border:1px solid #6A1515}
 .banner{margin-top:10px;padding:10px 14px;font-size:12px;line-height:1.6;border-radius:0 6px 6px 0}
@@ -54,8 +54,8 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .team-switcher{display:flex;gap:6px;margin-top:14px;margin-bottom:2px}
 .ts-btn{flex:1;padding:9px 10px;border-radius:7px;border:1px solid #1E2230;background:#13161C;color:#6A7080;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;text-align:center}
 .ts-btn:hover{border-color:#2A3040;color:#C0C6D4}
-.ts-btn.active-1st{border-color:#D4A017;color:#D4A017;background:#1A1508}
-.ts-btn.active-2nd{border-color:#2A6FD4;color:#5A9AF0;background:#0D1520}
+.ts-btn.active-1st{border-color:#7958FF;color:#A78BFA;background:#160F28}
+.ts-btn.active-2nd{border-color:#8A8F9C;color:#C7CCD6;background:#1A1B20}
 .timeline{display:flex;flex-direction:column;gap:3px;margin-top:12px}
 /* BLOCK */
 .block{display:flex;align-items:stretch;border-radius:7px;border:1px solid #1E2230;background:#13161C;transition:border-color .15s,opacity .2s;position:relative}
@@ -63,7 +63,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .block.done-block{opacity:.5}
 .block.done-block .bname{text-decoration:line-through;color:#4A5060}
 .block.no-xp-block{border-style:dashed}
-.block.sel{border-color:#2A6FD4;box-shadow:0 0 0 2px rgba(42,111,212,.2)}
+.block.sel{border-color:#7958FF;box-shadow:0 0 0 2px rgba(121,88,255,.2)}
 .block.tgt{border-color:#0F6E56;box-shadow:0 0 0 2px rgba(15,110,86,.15)}
 .baccent{width:3px;flex-shrink:0;border-radius:7px 0 0 7px}
 .btimes{min-width:86px;padding:9px 10px;display:flex;flex-direction:column;justify-content:center;gap:1px;border-right:1px solid #1E2230;background:#0F1117;cursor:pointer;flex-shrink:0}
@@ -76,7 +76,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .bname{font-size:13px;font-weight:500;color:#E8EAF0;line-height:1.3}
 .bdetail{font-size:12px;color:#6A7080;margin-top:2px;line-height:1.5}
 .bpts-tag{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;margin-top:3px;padding:1px 6px;border-radius:3px}
-.bpts-tag.has-xp{background:#1A1508;color:#D4A017;border:1px solid #3A2A08}
+.bpts-tag.has-xp{background:#160F28;color:#A78BFA;border:1px solid #3A2D66}
 .bpts-tag.no-xp{background:#1A1A1A;color:#4A5060;border:1px solid #1E2230}
 .bctrls{display:flex;align-items:center;gap:3px;padding:6px 8px;flex-shrink:0}
 .chk{width:22px;height:22px;border-radius:50%;border:2px solid #2A3040;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;font-size:11px;color:transparent}
@@ -87,22 +87,22 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .chk.noxp-chk.checked{background:#2A3040;border-color:#2A3040;color:#6A7080}
 .cbtn{width:26px;height:26px;border-radius:6px;border:1px solid #1E2230;background:#0F1117;color:#6A7080;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:13px}
 .cbtn:hover{border-color:#2A3040;color:#C0C6D4;background:#13161C}
-.cbtn.active{border-color:#2A6FD4;color:#5A9AF0;background:#0D1520}
+.cbtn.active{border-color:#7958FF;color:#A78BFA;background:#160F28}
 .cbtn.del:hover{border-color:#6A1515;color:#FF7070;background:#200A0A}
 .cbtn.xp-toggle{font-size:11px}
-.cbtn.xp-on{border-color:#3A2A08;color:#D4A017;background:#1A1508}
+.cbtn.xp-on{border-color:#3A2D66;color:#A78BFA;background:#160F28}
 .addbtn{width:100%;margin-top:6px;padding:9px;border:1px dashed #1E2230;border-radius:7px;background:none;color:#6A7080;font-size:13px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
-.addbtn:hover{border-color:#2A6FD4;color:#5A9AF0;background:#0D1520}
+.addbtn:hover{border-color:#7958FF;color:#A78BFA;background:#160F28}
 .scisec{margin-top:16px;border-top:1px solid #1E2230;padding-top:14px}
-.scititle{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:#6A4A0A;margin-bottom:8px}
+.scititle{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:#6A5FA0;margin-bottom:8px}
 .sciitem{font-size:12px;color:#6A7080;padding:3px 0 3px 14px;position:relative;line-height:1.5}
-.sciitem::before{content:"→";position:absolute;left:0;color:#4A3A08}
-.swapbar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#13161C;border:1px solid #2A6FD4;border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:#6A7080;box-shadow:0 4px 20px rgba(0,0,0,.5);z-index:150;white-space:nowrap}
+.sciitem::before{content:"→";position:absolute;left:0;color:#4A3F70}
+.swapbar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#13161C;border:1px solid #7958FF;border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:#6A7080;box-shadow:0 4px 20px rgba(0,0,0,.5);z-index:150;white-space:nowrap}
 .swapbar strong{color:#E8EAF0}
 .swapbar button{padding:4px 10px;border-radius:6px;border:1px solid #1E2230;background:none;color:#6A7080;font-size:11px;cursor:pointer;font-family:inherit}
 /* TOAST */
 .xp-toast{position:fixed;top:70px;right:16px;background:#1A2A12;border:1px solid #2E8B3A;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:#4ABF6A;z-index:500;animation:toastIn .3s ease,toastOut .3s ease 1.5s forwards;pointer-events:none}
-.lvlup-toast{position:fixed;top:70px;right:16px;background:#1A1508;border:1px solid #D4A017;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:700;color:#D4A017;z-index:500;animation:toastIn .3s ease,toastOut .3s ease 2.5s forwards;pointer-events:none;font-family:'Barlow Condensed',sans-serif;letter-spacing:.06em;text-align:center}
+.lvlup-toast{position:fixed;top:70px;right:16px;background:#160F28;border:1px solid #7958FF;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:700;color:#A78BFA;z-index:500;animation:toastIn .3s ease,toastOut .3s ease 2.5s forwards;pointer-events:none;font-family:'Barlow Condensed',sans-serif;letter-spacing:.06em;text-align:center}
 @keyframes toastIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes toastOut{from{opacity:1}to{opacity:0}}
 /* TIME POPUP */
@@ -111,16 +111,16 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .tprow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .tprow label{font-size:12px;color:#6A7080;width:36px;flex-shrink:0}
 .tprow input[type=time]{flex:1;font-size:13px;background:#0F1117;border:1px solid #2A3040;border-radius:5px;color:#E8EAF0;padding:5px 8px;font-family:inherit;color-scheme:dark}
-.tprow input:focus{outline:none;border-color:#2A6FD4}
+.tprow input:focus{outline:none;border-color:#7958FF}
 .tpacts{display:flex;gap:6px;margin-top:10px}
-.tpsave{flex:1;padding:7px;border-radius:5px;border:none;background:#2A6FD4;color:#E8EAF0;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.tpsave{flex:1;padding:7px;border-radius:5px;border:none;background:#7958FF;color:#E8EAF0;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
 .tpcancel{padding:7px 12px;border-radius:5px;border:1px solid #1E2230;background:none;color:#6A7080;font-size:12px;cursor:pointer;font-family:inherit}
 /* PATHWAY */
 .p-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;letter-spacing:.02em;color:#E8EAF0;line-height:1}
 .p-sub{font-size:13px;color:#6A7080;margin-top:4px}
-.goldbar{width:38px;height:3px;background:#D4A017;border-radius:2px;margin:10px 0 18px}
+.goldbar{width:38px;height:3px;background:linear-gradient(90deg,#7958FF,#C7CCD6);border-radius:2px;margin:10px 0 18px}
 .seclab{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6A7080;margin-bottom:8px}
-.quote-block{background:#13161C;border-left:3px solid #D4A017;border-radius:0 7px 7px 0;padding:11px 14px;margin-bottom:18px;font-size:13px;font-style:italic;color:#8A9AB0;line-height:1.6;display:flex;align-items:flex-start;gap:10px}
+.quote-block{background:#13161C;border-left:3px solid #7958FF;border-radius:0 7px 7px 0;padding:11px 14px;margin-bottom:18px;font-size:13px;font-style:italic;color:#8A9AB0;line-height:1.6;display:flex;align-items:flex-start;gap:10px}
 .quote-txt{flex:1}
 .stage-card{background:#13161C;border:1px solid #1E2230;border-radius:7px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:4px;transition:border-color .15s}
 .stage-card:hover{border-color:#2A3040}
@@ -150,21 +150,21 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .xbtn:hover{border-color:#2A3040;color:#C0C6D4}
 .xbtn.del:hover{border-color:#6A1515;color:#FF7070;background:#200A0A}
 .add-item{width:100%;margin-top:8px;padding:7px;border:1px dashed #1E2230;border-radius:6px;background:none;color:#6A7080;font-size:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s}
-.add-item:hover{border-color:#D4A017;color:#D4A017;background:#1A1508}
+.add-item:hover{border-color:#7958FF;color:#A78BFA;background:#160F28}
 /* RANKS TAB */
 .ranks-hero{margin-bottom:20px}
 .ranks-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;letter-spacing:.02em;color:#E8EAF0;line-height:1}
 .ranks-sub{font-size:13px;color:#6A7080;margin-top:4px}
-.current-rank-card{background:linear-gradient(135deg,#1A1508,#13161C);border:1px solid #D4A017;border-radius:10px;padding:16px;margin-bottom:20px;text-align:center}
+.current-rank-card{background:linear-gradient(135deg,#160F28,#13161C);border:1px solid #7958FF;border-radius:10px;padding:16px;margin-bottom:20px;text-align:center}
 .cr-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#6A7080;margin-bottom:4px;font-weight:600}
-.cr-rank{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:#D4A017;letter-spacing:.04em}
+.cr-rank{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:#7958FF;letter-spacing:.04em}
 .cr-xp{font-size:12px;color:#6A7080;margin-top:4px}
 .rank-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:7px;border:1px solid #1E2230;background:#13161C;margin-bottom:4px;transition:border-color .15s}
-.rank-row.current-row{border-color:#D4A017;background:#1A1508}
+.rank-row.current-row{border-color:#7958FF;background:#160F28}
 .rank-row.locked{opacity:.5}
 .rank-row.unlocked{border-color:#1A4A1A}
 .rank-num{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#3A4050;width:28px;flex-shrink:0;text-align:center}
-.rank-num.current-row-num{color:#D4A017}
+.rank-num.current-row-num{color:#7958FF}
 .rank-num.unlocked-num{color:#2E8B3A}
 .rank-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center}
 .rank-body{flex:1;min-width:0}
@@ -172,7 +172,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .rank-row.locked .rank-name{color:#4A5060}
 .rank-xp{font-size:11px;color:#6A7080;margin-top:1px}
 .rank-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;flex-shrink:0;white-space:nowrap}
-.rs-current{background:#1A1508;color:#D4A017;border:1px solid #3A2A08}
+.rs-current{background:#160F28;color:#A78BFA;border:1px solid #3A2D66}
 .rs-done{background:#0A1A0A;color:#2E8B3A;border:1px solid #1A4A1A}
 .rs-locked{background:#0F1117;color:#3A4050;border:1px solid #1E2230}
 .tier-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4A5060;margin:14px 0 6px;padding-left:2px}
@@ -183,13 +183,13 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .fg{margin-bottom:10px}
 .fg label{font-size:11px;color:#6A7080;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:4px;font-weight:500}
 .fg input,.fg textarea,.fg select{width:100%;font-family:inherit;font-size:13px;background:#0F1117;border:1px solid #2A3040;border-radius:6px;color:#E8EAF0;padding:7px 9px;color-scheme:dark}
-.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:#2A6FD4}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:#7958FF}
 .fg textarea{resize:vertical;min-height:70px;line-height:1.5}
 .fg select option{background:#13161C}
 .frow{display:flex;gap:8px}.frow .fg{flex:1}
 .macts{display:flex;gap:8px;margin-top:14px}
-.msave{flex:1;padding:9px;border-radius:6px;border:none;background:#2A6FD4;color:#E8EAF0;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
-.msave:hover{background:#1A5FC4}
+.msave{flex:1;padding:9px;border-radius:6px;border:none;background:#7958FF;color:#E8EAF0;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+.msave:hover{background:#5E3FD0}
 .mcancel{padding:9px 16px;border-radius:6px;border:1px solid #1E2230;background:none;color:#6A7080;font-size:13px;cursor:pointer;font-family:inherit}
 /* XP EDIT MODAL */
 .xp-edit-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1E2230}
@@ -197,7 +197,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .xp-edit-name{flex:1;font-size:13px;color:#E8EAF0}
 .xp-edit-toggle{display:flex;align-items:center;gap:6px}
 .xp-edit-val{width:52px;font-size:13px;background:#0F1117;border:1px solid #2A3040;border-radius:5px;color:#E8EAF0;padding:4px 6px;text-align:center;font-family:inherit;color-scheme:dark}
-.xp-edit-val:focus{outline:none;border-color:#2A6FD4}
+.xp-edit-val:focus{outline:none;border-color:#7958FF}
 .xp-on-toggle{width:36px;height:20px;border-radius:10px;border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
 .xp-on-toggle.on{background:#2E8B3A}
 .xp-on-toggle.off{background:#2A3040}
@@ -205,7 +205,7 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .xp-on-toggle.on::after{left:18px}
 .xp-on-toggle.off::after{left:2px}
 .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:14px;color:#6A7080;font-size:13px}
-.spinner{width:28px;height:28px;border:2px solid #1E2230;border-top-color:#2A6FD4;border-radius:50%;animation:spin .7s linear infinite}
+.spinner{width:28px;height:28px;border:2px solid #1E2230;border-top-color:#7958FF;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:480px){.dayname{font-size:28px}.btimes{min-width:76px}.tstart{font-size:13px}}
 [data-weekreset]:hover{border-color:#8A2020!important;background:#2A0808!important}
@@ -214,9 +214,9 @@ body{font-family:'Inter',sans-serif;background:#0D0F13;color:#E8EAF0;min-height:
 .todo-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#6A7080}
 .todo-add-row{display:flex;gap:6px;margin-bottom:8px}
 .todo-input{flex:1;background:#0F1117;border:1px solid #2A3040;border-radius:6px;color:#E8EAF0;font-size:13px;padding:7px 10px;font-family:inherit;color-scheme:dark}
-.todo-input:focus{outline:none;border-color:#2A6FD4}
-.todo-add-btn{padding:7px 12px;border-radius:6px;border:none;background:#2A6FD4;color:#E8EAF0;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
-.todo-add-btn:hover{background:#1A5FC4}
+.todo-input:focus{outline:none;border-color:#7958FF}
+.todo-add-btn{padding:7px 12px;border-radius:6px;border:none;background:#7958FF;color:#E8EAF0;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap}
+.todo-add-btn:hover{background:#5E3FD0}
 .todo-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#0F1117;border:1px solid #1E2230;border-radius:6px;margin-bottom:4px;transition:opacity .2s}
 .todo-item.done-todo{opacity:.5}
 .todo-chk{width:20px;height:20px;border-radius:50%;border:2px solid #2A3040;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;color:transparent;font-size:11px}
@@ -250,10 +250,17 @@ const BUILD_DOC=doc(db,"jersey10","build");
 // ── HELPERS ──────────────────────────────────────────────────────
 function td(s,e){if(!s||!e)return'';const[sh,sm]=s.split(':').map(Number);const[eh,em]=e.split(':').map(Number);let d=(eh*60+em)-(sh*60+sm);if(d<0)d+=1440;if(!d)return'';const h=Math.floor(d/60),m=d%60;return h&&m?`${h}h ${m}m`:h?`${h}h`:`${m}m`;}
 function f12(t){if(!t)return'';const[h,m]=t.split(':').map(Number);return`${h%12||12}:${String(m).padStart(2,'0')}${h>=12?'pm':'am'}`;}
-function cc(c){return{team:'#2A6FD4',gym:'#C94B1A',kick:'#2E8B3A',sprint:'#6B4FBB',stretch:'#1A9E72',free:'#4A5060',sleep:'#4A3A8A',routine:'#3A4050',game:'#8A1A1A'}[c]||'#3A4050';}
+function cc(c){return{team:'#7958FF',gym:'#C94B1A',kick:'#2E8B3A',sprint:'#6B4FBB',stretch:'#1A9E72',free:'#4A5060',sleep:'#4A3A8A',routine:'#3A4050',game:'#8A1A1A'}[c]||'#3A4050';}
 function uid(){return'id-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);}
 function deepClone(o){return JSON.parse(JSON.stringify(o));}
 function today(){return new Date().toISOString().slice(0,10);}
+// Determine which tab/day index to open based on the CURRENT day of week in New Zealand,
+// regardless of what timezone the device itself is set to.
+function nzDayTab(){
+  const wd=new Intl.DateTimeFormat('en-US',{timeZone:'Pacific/Auckland',weekday:'long'}).format(new Date());
+  const map={Monday:{tab:'mon',idx:0},Tuesday:{tab:'tue',idx:1},Wednesday:{tab:'wed',idx:2},Thursday:{tab:'thu',idx:3},Friday:{tab:'fri',idx:4},Saturday:{tab:'sat',idx:5},Sunday:{tab:'sun',idx:7}};
+  return map[wd]||{tab:'mon',idx:0};
+}
 
 // ── RANKS ────────────────────────────────────────────────────────
 // Calibrated for a 5-8 year journey at realistic training consistency
@@ -330,9 +337,9 @@ const XP_PTS_DEFAULT={game:40,team:25,gym:20,sprint:18,kick:18,stretch:8,routine
 const DEFAULT_PATH={
   quote:"Don't just want to be selected. Be remembered. The All Blacks don't pick players — they pick legends in the making.",
   stages:[
-    {id:'s1',title:'First XV Starter',detail:'Secure the 10 jersey. Not bench, not rotation — starter. Own the role every session.',badge:'Now',bc:'#2A6FD4',bb:'#0D1520'},
+    {id:'s1',title:'First XV Starter',detail:'Secure the 10 jersey. Not bench, not rotation — starter. Own the role every session.',badge:'Now',bc:'#7958FF',bb:'#160F28'},
     {id:'s2',title:'Regional / Provincial Rugby',detail:'Get on the radar outside your school. Dominate national schoolboy competitions.',badge:'Age 17–18',bc:'#2E8B3A',bb:'#0A180A'},
-    {id:'s3',title:'NZ Schools Jersey',detail:'First national selection. Players who wear this jersey get Super Rugby trials.',badge:'Age 18–19',bc:'#D4A017',bb:'#1A1508'},
+    {id:'s3',title:'NZ Schools Jersey',detail:'First national selection. Players who wear this jersey get Super Rugby trials.',badge:'Age 18–19',bc:'#9AA0AE',bb:'#1A1B20'},
     {id:'s4',title:'NZ Under 20s — Baby Blacks',detail:'Direct bridge to Super Rugby. Competing globally. Careers are launched here.',badge:'Age 18–20',bc:'#6B4FBB',bb:'#130F20'},
     {id:'s5',title:'Super Rugby Contract',detail:'First professional contract. Aim for Chiefs. Consistency here earns the black jersey.',badge:'Age 19–22',bc:'#1A9E72',bb:'#071A12'},
     {id:'s6',title:'All Blacks',detail:'The black jersey. Everything builds to this. Be so good they cannot ignore you.',badge:'The Goal',bc:'#8A1A1A',bb:'#1A0808'}
@@ -372,7 +379,7 @@ const DEFAULT_PATH={
       {id:'pw5',text:'Super Rugby contract',sub:'Chiefs first choice. Consistent for 2–3 seasons = All Blacks.'},
       {id:'pw6',text:'All Blacks and legacy',sub:'Years of compounding excellence. The best 10 in New Zealand.'}
     ]},
-    {id:'p5',icon:'⚡',color:'#D4A017',bg:'#1A1204',name:'Work-Ons Right Now',desc:'The three gaps to close immediately',open:false,items:[
+    {id:'p5',icon:'⚡',color:'#9AA0AE',bg:'#1A1B20',name:'Work-Ons Right Now',desc:'The three gaps to close immediately',open:false,items:[
       {id:'wo1',text:'Repeated sprint ability',sub:'Monday sprint sessions. Track every rep. Numbers tell you if it\'s working.'},
       {id:'wo2',text:'One-on-one tackling',sub:'Bag work before live reps. Don\'t avoid it.'},
       {id:'wo3',text:'Speed under fatigue',sub:'Hard run then sprint. Measure the drop-off and close it.'}
@@ -382,9 +389,9 @@ const DEFAULT_PATH={
 
 function makeDefaultSched(){
   return[
-    {name:"Monday",short:"Mon",load:"high",loadLabel:"High load — sprint + full body gym",sub:"CNS primed post-rest. Hardest training day of the week.",science:["Post-weekend recovery makes Monday optimal for peak neuromuscular work (Kraemer & Ratamess, 2004)","Sprints before gym preserves CNS quality — fatigued sprints lose speed adaptation","Fly-half first-step acceleration: 10–40m at >95% is the stimulus","Full body gym compounds weekly volume efficiently"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check HRV / resting HR first thing, before getting up. Guides today’s training intensity — low reading means back off, normal or high means push.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"500ml water. Oats or eggs + toast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"16:30",end:"17:00",label:"home",name:"Home — fuel up",detail:"High-carb snack. Change into kit.",cat:"routine"},{id:uid(),start:"16:55",end:"17:00",label:"process",name:"Process goals — 3 before training",detail:"Identify 3 specific process goals before this session. e.g. full effort every rep, clean footwork on starts, no drop-off after rep 4.",cat:"routine"},{id:uid(),start:"17:00",end:"17:50",label:"sprint",name:"RSA sprint session",detail:"Warm-up → 6×40m at 95%+ (3 min rest) → 4×10m starts → 2×20m. Progress RSA volume up and rest ratio down gradually over months, not weeks. Track every split time, perceived exertion, and recovery HR.",cat:"sprint"},{id:uid(),start:"18:00",end:"19:30",label:"gym",name:"Gym — full body",detail:"Squat 4×5 → Bench 4×5 → Deadlift 3×5 → DB row 3×8 → Hip thrust 3×10 → Push press 3×8 → Calf raises 3×15 → Planks 3×45s. 90 min.",cat:"gym"},{id:uid(),start:"19:30",end:"19:50",label:"stretch",name:"Post-gym stretch",detail:"Hip flexors, quads, hamstrings, glutes, thoracic. PNF holds 30–45s.",cat:"stretch"},{id:uid(),start:"19:50",end:"19:56",label:"nordic",name:"Nordic curls",detail:"3×6, controlled eccentric lowering. Hamstring injury prevention — non-negotiable, twice weekly indefinitely.",cat:"stretch"},{id:uid(),start:"20:00",end:"20:40",label:"dinner",name:"Dinner + shower",detail:"Chicken/fish + rice + veg.",cat:"routine"},{id:uid(),start:"20:40",end:"21:20",label:"free",name:"Free time",detail:"Girlfriend, gaming, unwind.",cat:"free"},{id:uid(),start:"21:20",end:"21:30",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum. Passing, footwork, ball handling. Every single day, even on heavy training days.",cat:"kick"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min. One topic, no phone.",cat:"routine"},{id:uid(),start:"22:00",end:"22:05",label:"journal",name:"Training journal",detail:"5 minutes. What went well today, one thing to improve tomorrow.",cat:"routine"},{id:uid(),start:"22:05",end:"22:20",label:"visualise",name:"Visualisation",detail:"10 minutes before sleep. Tomorrow’s team session — calls, kicks, defensive reads.",cat:"sleep"},{id:uid(),start:"22:20",end:"22:30",label:"wind down",name:"Wind down",detail:"No screens. Dim lights.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out — 8hr window",detail:"8+ hours minimum, consistent times every night.",cat:"sleep"}]},
-    {name:"Tuesday",short:"Tue",load:"high",loadLabel:"High load — team training",sub:"Team session. Home ~6:30–6:45.",note:"Stretch on the field before you leave.",science:["Team training demands full cognitive output","Post-session field stretching while warm is more effective","Every session is a 10 jersey audition","Recovery meal within 45 min accelerates glycogen 2× (Burke et al., 2011)"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check HRV / resting HR before getting up. Guides today’s intensity.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"Hydrate, light breakfast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"15:30",end:"15:40",label:"zone2",name:"Zone 2 aerobic — the engine builder",detail:"35–45 minutes at conversational pace (Zone 2, can hold a conversation). Easy jog or bike before training. This builds your aerobic base for the 70th minute.",cat:"sprint"},{id:uid(),start:"15:40",end:"15:45",label:"fuel",name:"Pre-training snack",detail:"Banana + 500ml water.",cat:"routine"},{id:uid(),start:"15:40",end:"15:45",label:"process",name:"Process goals — 3 before training",detail:"Identify 3 specific things to nail this session.",cat:"routine"},{id:uid(),start:"15:45",end:"17:15",label:"team",name:"Team training",detail:"Arrive 5 min early. Lead calls from minute one.",cat:"team"},{id:uid(),start:"17:15",end:"17:30",label:"stretch",name:"Post-session stretch — on field",detail:"IT band, hip flexors, calves, thoracic. 12 min.",cat:"stretch"},{id:uid(),start:"17:30",end:"18:40",label:"travel",name:"Travel home",detail:"~60–75 min. 3 things done well, 1 to fix.",cat:"routine"},{id:uid(),start:"18:40",end:"19:15",label:"dinner",name:"Recovery meal + shower",detail:"Protein + carbs within 45 min.",cat:"routine"},{id:uid(),start:"19:15",end:"21:10",label:"free",name:"Free time",detail:"Girlfriend, gaming, rest.",cat:"free"},{id:uid(),start:"21:10",end:"21:20",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum, even after a big session.",cat:"kick"},{id:uid(),start:"21:20",end:"21:30",label:"journal",name:"Training journal",detail:"5 minutes. What went well today, what to fix.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min.",cat:"routine"},{id:uid(),start:"22:00",end:"22:30",label:"wind down",name:"Wind down",detail:"Dim lights, no screens.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out",detail:"8+ hours, consistent times.",cat:"sleep"}]},
-    {name:"Wednesday",short:"Wed",load:"high",loadLabel:"High — team + speed + kicking + gym + conditioning",sub:"Biggest training volume day. Optional 7am team, then four afternoon sessions.",note:"Early start if doing 7am — wake 5:45. Four sessions this afternoon — fuel properly.",science:["Kicking before gym is correct — technique degrades under neuromuscular fatigue (Broadie, 2016)","Short acceleration work before kicking is fine — clears quickly at low volume, no RSA-style fatigue","Upper body gym Wednesday has no conflict with Monday lower body — 48h+ recovery window","Metabolic conditioning finisher spikes growth hormone and builds repeat effort capacity","Midweek is the optimal window for volume work — Tuesday fatigue cleared, Thursday not yet arrived","48h between kicking sessions (Wed/Fri) maximises skill consolidation (Schmidt & Lee, 2011)"],blocks:[{id:uid(),start:"05:45",end:"05:50",label:"hrv",name:"Morning HRV check",detail:"Check before getting up. Heavy day ahead — low HRV means reduce afternoon volume, don't skip.",cat:"routine"},{id:uid(),start:"05:50",end:"06:30",label:"wake up",name:"Early wake up",detail:"Hydration + banana. Kit ready the night before.",cat:"routine"},{id:uid(),start:"06:40",end:"07:00",label:"travel",name:"Travel to morning session",detail:"Arrive 5 min early.",cat:"routine"},{id:uid(),start:"07:00",end:"08:15",label:"team",name:"Optional morning team session",detail:"Full engagement. ~75 min.",cat:"team"},{id:uid(),start:"08:20",end:"08:45",label:"school",name:"Head to school",detail:"Recovery snack. Commute.",cat:"routine"},{id:uid(),start:"16:30",end:"16:45",label:"home",name:"Home — fuel up",detail:"High-carb snack immediately: banana + peanut butter or rice cakes. Four sessions ahead. Change into kit.",cat:"routine"},{id:uid(),start:"16:45",end:"16:48",label:"process",name:"Process goals — 3 for today",detail:"Speed: full effort every rep. Kicking: log every kick. Gym: beat last week on at least one lift.",cat:"routine"},{id:uid(),start:"16:48",end:"17:00",label:"sprint",name:"Speed session — acceleration",detail:"Dynamic warm-up 5 min → 6×20m standing start at 100% (90s full rest) → 4×10m reaction starts. 12 min total work. Pure first-step speed, not RSA — short enough to keep CNS fresh for kicking.",cat:"sprint"},{id:uid(),start:"17:00",end:"17:50",label:"kick",name:"Kicking session — full toolbox",detail:"Warm-up kicks 5 min → Goal kicks 4 zones × 5 (log every one) → Spiral punts for touch (10) → Cross-field (8) → Grubbers from 22 (8) → Box kicks (6). 50 min. Kicking before gym preserves technique quality.",cat:"kick"},{id:uid(),start:"17:50",end:"18:10",label:"stretch",name:"Mobility + gym activation",detail:"Hip flexors, thoracic rotation, shoulder CARs. Doubles as warm-up for gym. 20 min.",cat:"stretch"},{id:uid(),start:"18:10",end:"19:15",label:"gym",name:"Gym — upper body + accessory",detail:"Bench press 4×6 → Weighted chin-ups 4×5 → DB shoulder press 3×10 → Cable rows 3×12 → Rotator cuff work 3×15 → Face pulls 3×15 → Nordic curls 3×6. 65 min. Upper body — complements Monday lower body.",cat:"gym"},{id:uid(),start:"19:15",end:"19:35",label:"conditioning",name:"Conditioning finisher — metabolic circuit",detail:"4 rounds: 10× box jumps → 10× med ball slams → 10× burpees → 45s rest. ~20 min. Raises GH, builds repeat effort capacity. Scale to how body feels. Skip if four sessions have genuinely emptied the tank.",cat:"sprint"},{id:uid(),start:"19:35",end:"19:45",label:"stretch",name:"Post-session full stretch",detail:"Full body static holds. Hamstrings, hip flexors, thoracic, calves. 10 min minimum.",cat:"stretch"},{id:uid(),start:"19:50",end:"20:30",label:"dinner",name:"Dinner + shower",detail:"Big recovery meal: protein + carbs + veg. Shower. You need fuel after this day.",cat:"routine"},{id:uid(),start:"20:30",end:"21:20",label:"free",name:"Free time",detail:"Girlfriend, gaming, rest. Shorter tonight after a big day.",cat:"free"},{id:uid(),start:"21:20",end:"21:25",label:"journal",name:"Training journal",detail:"Log kicking accuracy per zone, any gym PRs, conditioning circuit rating 1-10.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min.",cat:"routine"},{id:uid(),start:"22:00",end:"22:30",label:"wind down",name:"Wind down",detail:"Prioritise sleep — four sessions is significant CNS load.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out",detail:"8+ hours. Thursday team tomorrow.",cat:"sleep"}]},
+    {name:"Monday",short:"Mon",load:"high",loadLabel:"High load — sprint + full body gym + conditioning",sub:"CNS primed post-rest. Hardest training day of the week.",science:["Post-weekend recovery makes Monday optimal for peak neuromuscular work (Kraemer & Ratamess, 2004)","Sprints before gym preserves CNS quality — fatigued sprints lose speed adaptation","Fly-half first-step acceleration: 10–40m at >95% is the stimulus","Full body gym compounds weekly volume efficiently","Conditioning finisher sits here because Monday is the day built for maximum output — Tuesday's team session gives recovery before Wednesday"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check HRV / resting HR first thing, before getting up. Guides today’s training intensity — low reading means back off, normal or high means push.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"500ml water. Oats or eggs + toast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"16:30",end:"17:00",label:"home",name:"Home — fuel up",detail:"High-carb snack. Change into kit.",cat:"routine"},{id:uid(),start:"16:55",end:"17:00",label:"process",name:"Process goals — 3 before training",detail:"Identify 3 specific process goals before this session. e.g. full effort every rep, clean footwork on starts, no drop-off after rep 4.",cat:"routine"},{id:uid(),start:"17:00",end:"17:50",label:"sprint",name:"RSA sprint session",detail:"Warm-up → 6×40m at 95%+ (3 min rest) → 4×10m starts → 2×20m. Progress RSA volume up and rest ratio down gradually over months, not weeks. Track every split time, perceived exertion, and recovery HR.",cat:"sprint"},{id:uid(),start:"18:00",end:"19:30",label:"gym",name:"Gym — full body",detail:"Squat 4×5 → Bench 4×5 → Deadlift 3×5 → DB row 3×8 → Hip thrust 3×10 → Push press 3×8 → Calf raises 3×15 → Planks 3×45s. 90 min.",cat:"gym"},{id:uid(),start:"19:30",end:"19:50",label:"stretch",name:"Post-gym stretch",detail:"Hip flexors, quads, hamstrings, glutes, thoracic. PNF holds 30–45s.",cat:"stretch"},{id:uid(),start:"19:50",end:"19:56",label:"nordic",name:"Nordic curls",detail:"3×6, controlled eccentric lowering. Hamstring injury prevention — non-negotiable, twice weekly indefinitely.",cat:"stretch"},{id:uid(),start:"19:56",end:"20:16",label:"conditioning",name:"Conditioning finisher — rugby fitness circuit",detail:"4 rounds: 10× box jumps → 10× med ball slams → 10× burpees → 45s rest. ~20 min. Builds repeat-effort capacity for the 70th minute. Scale to how the body feels.",cat:"sprint"},{id:uid(),start:"20:20",end:"21:00",label:"dinner",name:"Dinner + shower",detail:"Chicken/fish + rice + veg.",cat:"routine"},{id:uid(),start:"21:00",end:"21:20",label:"free",name:"Free time",detail:"Girlfriend, gaming, unwind. Shorter tonight — conditioning finisher added.",cat:"free"},{id:uid(),start:"21:20",end:"21:30",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum. Passing, footwork, ball handling. Every single day, even on heavy training days.",cat:"kick"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min. One topic, no phone.",cat:"routine"},{id:uid(),start:"22:00",end:"22:05",label:"journal",name:"Training journal",detail:"5 minutes. What went well today, one thing to improve tomorrow.",cat:"routine"},{id:uid(),start:"22:05",end:"22:20",label:"visualise",name:"Visualisation",detail:"10 minutes before sleep. Tomorrow’s team session — calls, kicks, defensive reads.",cat:"sleep"},{id:uid(),start:"22:20",end:"22:30",label:"wind down",name:"Wind down",detail:"No screens. Dim lights.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out — 8hr window",detail:"8+ hours minimum, consistent times every night.",cat:"sleep"}]},
+    {name:"Tuesday",short:"Tue",load:"high",loadLabel:"High load — team training",sub:"Team session. Home ~6:30–6:45.",note:"Stretch on the field before you leave.",science:["Team training demands full cognitive output","Post-session field stretching while warm is more effective","Every session is a 10 jersey audition","Recovery meal within 45 min accelerates glycogen 2× (Burke et al., 2011)"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check before getting up. Guides today’s intensity.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"Hydrate, light breakfast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"15:30",end:"15:40",label:"zone2",name:"Zone 2 aerobic — the engine builder",detail:"35–45 minutes at conversational pace (Zone 2, can hold a conversation). Easy jog or bike before training. This builds your aerobic base for the 70th minute.",cat:"sprint"},{id:uid(),start:"15:40",end:"15:45",label:"fuel",name:"Pre-training snack",detail:"Banana + 500ml water.",cat:"routine"},{id:uid(),start:"15:40",end:"15:45",label:"process",name:"Process goals — 3 before training",detail:"Identify 3 specific things to nail this session.",cat:"routine"},{id:uid(),start:"15:45",end:"17:15",label:"team",name:"Team training",detail:"Arrive 5 min early. Lead calls from minute one.",cat:"team"},{id:uid(),start:"17:15",end:"17:30",label:"stretch",name:"Post-session stretch — on field",detail:"IT band, hip flexors, calves, thoracic. 12 min.",cat:"stretch"},{id:uid(),start:"17:30",end:"18:40",label:"travel",name:"Travel home",detail:"~60–75 min. 3 things done well, 1 to fix.",cat:"routine"},{id:uid(),start:"18:40",end:"19:15",label:"dinner",name:"Recovery meal + shower",detail:"Protein + carbs within 45 min.",cat:"routine"},{id:uid(),start:"19:15",end:"21:10",label:"free",name:"Free time",detail:"Girlfriend, gaming, rest.",cat:"free"},{id:uid(),start:"21:10",end:"21:20",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum, even after a big session.",cat:"kick"},{id:uid(),start:"21:20",end:"21:30",label:"journal",name:"Training journal",detail:"5 minutes. What went well today, what to fix.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min.",cat:"routine"},{id:uid(),start:"22:00",end:"22:30",label:"wind down",name:"Wind down",detail:"Dim lights, no screens.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out",detail:"8+ hours, consistent times.",cat:"sleep"}]},
+    {name:"Wednesday",short:"Wed",load:"high",loadLabel:"High — team + speed + gym",sub:"Team in the morning covers kicking — afternoon is speed and gym.",note:"Early start if doing 7am — wake 5:45. Kicking done at morning team session.",science:["Kicking covered in morning team session — afternoon free for strength work","Speed acceleration before gym is fine at low volume — CNS recovers within minutes at 6×20m","Upper body gym Wednesday has no conflict with Monday lower body — 48h+ recovery window"],blocks:[{id:uid(),start:"05:45",end:"05:50",label:"hrv",name:"Morning HRV check",detail:"Check before getting up. Long day ahead — low HRV means scale back, don't skip.",cat:"routine"},{id:uid(),start:"05:50",end:"06:30",label:"wake up",name:"Early wake up",detail:"Hydration + banana. Kit ready the night before.",cat:"routine"},{id:uid(),start:"06:40",end:"07:00",label:"travel",name:"Travel to morning session",detail:"Arrive 5 min early.",cat:"routine"},{id:uid(),start:"07:00",end:"08:15",label:"team",name:"Morning team session (optional)",detail:"Full engagement. Kicking covered here so afternoon is free for gym and speed. ~75 min.",cat:"team"},{id:uid(),start:"08:20",end:"08:45",label:"school",name:"Head to school",detail:"Recovery snack. Commute.",cat:"routine"},{id:uid(),start:"16:30",end:"16:45",label:"home",name:"Home — fuel up",detail:"High-carb snack immediately: banana + peanut butter or rice cakes. Two sessions ahead. Change into kit.",cat:"routine"},{id:uid(),start:"16:45",end:"16:48",label:"process",name:"Process goals — 3 for today",detail:"Speed: full effort every rep. Gym: beat last week on at least one lift.",cat:"routine"},{id:uid(),start:"16:48",end:"17:10",label:"sprint",name:"Speed session — acceleration work",detail:"Dynamic warm-up 5 min → 6×20m standing start at 100% (90s full rest between) → 4×10m reaction starts. 22 min total. Pure first-step speed — short enough to keep CNS fresh for gym.",cat:"sprint"},{id:uid(),start:"17:10",end:"17:30",label:"stretch",name:"Mobility + gym activation",detail:"Hip flexors, thoracic rotation, shoulder CARs. Doubles as warm-up for gym. 20 min.",cat:"stretch"},{id:uid(),start:"17:30",end:"18:35",label:"gym",name:"Gym — upper body + accessory",detail:"Bench press 4×6 → Weighted chin-ups 4×5 → DB shoulder press 3×10 → Cable rows 3×12 → Rotator cuff work 3×15 → Face pulls 3×15 → Nordic curls 3×6. 65 min. Upper body — complements Monday lower body.",cat:"gym"},{id:uid(),start:"18:35",end:"18:50",label:"stretch",name:"Post-session full stretch",detail:"Full body static holds. Hamstrings, hip flexors, thoracic, calves. 15 min minimum.",cat:"stretch"},{id:uid(),start:"18:55",end:"19:40",label:"dinner",name:"Dinner + shower",detail:"Recovery meal: protein + carbs + veg. Shower.",cat:"routine"},{id:uid(),start:"19:40",end:"21:35",label:"free",name:"Free time",detail:"Girlfriend, gaming, rest.",cat:"free"},{id:uid(),start:"21:35",end:"21:40",label:"journal",name:"Training journal",detail:"Log any gym PRs and sprint times.",cat:"routine"},{id:uid(),start:"21:40",end:"22:05",label:"study",name:"Study",detail:"25 min.",cat:"routine"},{id:uid(),start:"22:05",end:"22:30",label:"wind down",name:"Wind down",detail:"No screens, dim lights.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out",detail:"8+ hours. Thursday team tomorrow.",cat:"sleep"}]},
     {name:"Thursday",short:"Thu",load:"high",loadLabel:"High load — team training",sub:"Second team session. Home ~6:30–6:45.",note:"Same as Tuesday. Stretch before leaving.",science:["Thursday is the tactical peak — coaches watch the 10 most closely","Every session is a selection moment","RSA is built by not saving yourself","Thursday sleep = Saturday performance"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check before getting up. Compare to Monday’s reading.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"Hydrate, breakfast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"15:25",end:"15:30",label:"nordic",name:"Nordic curls",detail:"3×6, controlled eccentric. Second session of the week — indefinitely.",cat:"stretch"},{id:uid(),start:"15:30",end:"15:40",label:"zone2",name:"Zone 2 aerobic",detail:"35–45 min conversational pace if time allows, or shorten to fit before training. The engine builder.",cat:"sprint"},{id:uid(),start:"15:40",end:"15:45",label:"fuel",name:"Pre-training snack",detail:"Banana or energy bar.",cat:"routine"},{id:uid(),start:"15:40",end:"15:45",label:"process",name:"Process goals — 3 before training",detail:"3 specific things to nail today.",cat:"routine"},{id:uid(),start:"15:45",end:"17:15",label:"team",name:"Team training",detail:"Game-prep focus. Lead every call.",cat:"team"},{id:uid(),start:"17:15",end:"17:30",label:"stretch",name:"Post-session stretch — on field",detail:"Kicking leg, groin, calves, hip flexors. 12 min.",cat:"stretch"},{id:uid(),start:"17:30",end:"18:40",label:"travel",name:"Travel home",detail:"One thing to do differently Saturday.",cat:"routine"},{id:uid(),start:"18:40",end:"19:15",label:"dinner",name:"Recovery meal + shower",detail:"Protein + carbs ASAP.",cat:"routine"},{id:uid(),start:"19:15",end:"21:10",label:"free",name:"Free time",detail:"Gaming, girlfriend, chill.",cat:"free"},{id:uid(),start:"21:10",end:"21:20",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum.",cat:"kick"},{id:uid(),start:"21:20",end:"21:25",label:"journal",name:"Training journal",detail:"5 minutes. What went well, what to fix before Saturday.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"study",name:"Study",detail:"30 min.",cat:"routine"},{id:uid(),start:"22:00",end:"22:30",label:"wind down",name:"Wind down",detail:"Visualise Saturday.",cat:"sleep"},{id:uid(),start:"22:30",end:"06:30",label:"sleep",name:"Lights out — critical sleep",detail:"8+ hours.",cat:"sleep"}]},
     {name:"Friday",short:"Fri",load:"medium",loadLabel:"Medium — light gym + short kicking",sub:"Sharp not heavy. Game tomorrow. Carb load tonight.",science:["Pre-game training: 60–70% volume keeps CNS fresh","Friday kicking is confidence only","Carb loading from Friday dinner raises glycogen (Burke, 2007)","Visualisation improves fly-half execution accuracy"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check before getting up. Should be trending normal/high before a game day tomorrow.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up + morning routine",detail:"Hydrate, breakfast.",cat:"routine"},{id:uid(),start:"07:10",end:"07:45",label:"school",name:"Leave for school",detail:"Commute.",cat:"routine"},{id:uid(),start:"16:30",end:"17:00",label:"home",name:"Home — fuel up",detail:"Pre-session snack.",cat:"routine"},{id:uid(),start:"16:55",end:"17:00",label:"process",name:"Process goals — 3 before training",detail:"3 specific things to nail today, light and sharp.",cat:"routine"},{id:uid(),start:"17:00",end:"17:20",label:"kick",name:"Kicking — short & sharp",detail:"20 min. Favourite 5 goal-kick spots. Confidence only.",cat:"kick"},{id:uid(),start:"17:25",end:"18:45",label:"gym",name:"Gym — full body (reduced)",detail:"Squat 3×4 @65% → Bench 3×4 @65% → Deadlift 2×4 @65% → DB row 3×6 → Push press 2×6 → Core 2×40s. 80 min.",cat:"gym"},{id:uid(),start:"18:45",end:"19:05",label:"stretch",name:"Stretch + foam roll",detail:"Full body. Kicking leg and hips.",cat:"stretch"},{id:uid(),start:"19:10",end:"19:50",label:"dinner",name:"Dinner — carb load",detail:"Pasta or rice. High carb, low fat/fibre.",cat:"routine"},{id:uid(),start:"19:50",end:"20:50",label:"free",name:"Free time — Friday night",detail:"Girlfriend, games. No late nights.",cat:"free"},{id:uid(),start:"20:50",end:"21:00",label:"touch",name:"Skill touch — ball in hands",detail:"10 minutes minimum, light, just to keep the touch sharp before tomorrow.",cat:"kick"},{id:uid(),start:"21:00",end:"21:25",label:"study",name:"Study",detail:"25 min.",cat:"routine"},{id:uid(),start:"21:25",end:"21:30",label:"journal",name:"Training journal",detail:"5 minutes. One thing nailed this week, one focus for tomorrow.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"visualise",name:"Pre-game visualisation",detail:"Eyes closed. Kick-off, first 5 plays, defensive shape, goal kicks.",cat:"sleep"},{id:uid(),start:"22:00",end:"06:30",label:"sleep",name:"Lights out — early",detail:"8+ hours, consistent times.",cat:"sleep"}]},
     {name:"Saturday",short:"Sat",load:"game",loadLabel:"🏉 1st XV — kick-off 12:00",sub:"Everything this week was built for today.",gameBanner:"Kick-off 12:00. Pre-game meal by 9:00. Trust your prep.",science:["Pre-game meal 3h before: high carb, low fat/fibre (Burke, 2007)","Warm-up must reach 80%+ max HR","Fly-half: visualise first 5 plays in final 15 min","Post-game protein + carbs within 30–45 min"],blocks:[{id:uid(),start:"06:30",end:"06:35",label:"hrv",name:"Morning HRV check",detail:"Check before getting up on game day.",cat:"routine"},{id:uid(),start:"06:35",end:"07:00",label:"wake up",name:"Wake up — game day",detail:"Hydrate. Light movement. Calm, confident.",cat:"routine"},{id:uid(),start:"07:00",end:"07:40",label:"breakfast",name:"Game day breakfast",detail:"Oats + banana + honey. 400–600 cal.",cat:"routine"},{id:uid(),start:"07:40",end:"08:45",label:"free",name:"Relaxed morning",detail:"Off your feet. Save your legs.",cat:"free"},{id:uid(),start:"08:45",end:"09:00",label:"visualise",name:"Pre-game visualisation",detail:"15 min. Kick-off call, first 5 plays.",cat:"routine"},{id:uid(),start:"09:00",end:"09:45",label:"fuel",name:"Pre-game meal — 3hrs out",detail:"Pasta/rice + chicken. Low fat, low fibre.",cat:"routine"},{id:uid(),start:"09:45",end:"10:55",label:"free",name:"Rest + travel to ground",detail:"Kit check. Arrive early.",cat:"free"},{id:uid(),start:"10:55",end:"11:00",label:"process",name:"Process goals — 3 before kick-off",detail:"3 specific things to nail today. Write them down.",cat:"routine"},{id:uid(),start:"11:00",end:"11:55",label:"warm up",name:"Team warm-up",detail:"Dynamic → passing → kicking → team shape. HR to 80%+.",cat:"team"},{id:uid(),start:"12:00",end:"13:45",label:"game",name:"🏉 KICK OFF — 12:00",detail:"Lead your backline. Set the tempo.",cat:"game"},{id:uid(),start:"13:45",end:"14:10",label:"cool down",name:"Post-match cool-down + stretch",detail:"Easy jog + full body stretch immediately.",cat:"stretch"},{id:uid(),start:"14:15",end:"15:00",label:"recovery",name:"Post-match meal",detail:"Protein shake first then chicken + rice + veg.",cat:"routine"},{id:uid(),start:"15:00",end:"21:00",label:"free",name:"Post-game free time",detail:"Celebrate, reflect, socialise.",cat:"free"},{id:uid(),start:"21:00",end:"21:05",label:"journal",name:"Game journal",detail:"5 minutes. What went well today, one thing to work on this week.",cat:"routine"},{id:uid(),start:"21:30",end:"22:00",label:"wind down",name:"Wind down",detail:"Sleep is #1 recovery.",cat:"sleep"},{id:uid(),start:"22:00",end:"07:00",label:"sleep",name:"Lights out — recovery sleep",detail:"8.5+ hours.",cat:"sleep"}]},
@@ -399,7 +406,8 @@ let xpData={totalXP:750,lastDate:'',streak:0,checks:{},blockSettings:{}};
 // blockSettings: { blockId: { enabled: bool, points: number } }
 // todoData: { "mon": [{id, text, done}], "tue": [...], ... }
 let todoData={mon:[],tue:[],wed:[],thu:[],fri:[],sat:[],sun:[]};
-let curDay=0,activeTab='mon',satTeam='1st';
+const _nzd=nzDayTab();
+let curDay=_nzd.idx,activeTab=_nzd.tab,satTeam='1st';
 let swapIdx=null,tpIdx=null,syncStatus='synced';
 let ignoreNext=false;
 const DAY_TABS=[{short:'Mon',tab:'mon',idx:0},{short:'Tue',tab:'tue',idx:1},{short:'Wed',tab:'wed',idx:2},{short:'Thu',tab:'thu',idx:3},{short:'Fri',tab:'fri',idx:4},{short:'Sat',tab:'sat',idx:5},{short:'Sun',tab:'sun',idx:7}];
@@ -464,7 +472,7 @@ function linkify(text){
   // Escape HTML first
   const esc=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   // Then make URLs clickable
-  return esc.replace(/(https?:\/\/[^\s<>"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:#5A9AF0;text-decoration:underline;word-break:break-all" onclick="event.stopPropagation()">$1</a>');
+  return esc.replace(/(https?:\/\/[^\s<>"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;word-break:break-all" onclick="event.stopPropagation()">$1</a>');
 }
 function render(){
   const app=document.getElementById('app');
@@ -634,7 +642,7 @@ function rSched(){
         <div class="bname">${b.name}</div>
         ${b.detail?`<div class="bdetail">${linkify(b.detail)}</div>`:''}
         ${en?`<span class="bpts-tag has-xp">${done?'✓ Done':'+'+pts+' XP'}</span>`:`<span class="bpts-tag no-xp">No XP</span>`}
-        ${b.link?`<div style="margin-top:4px"><a href="${b.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#5A9AF0;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 6px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a></div>`:''}
+        ${b.link?`<div style="margin-top:4px"><a href="${b.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#A78BFA;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 6px;background:#160F28;border:1px solid #3A2D66;border-radius:4px">🔗 Open link</a></div>`:''}
       </div>
       <div class="bctrls">
         <button class="chk${done?' checked':''}${!en?' noxp-chk':''}" data-chk="${b.id}" title="${done?'Uncheck':'Check off'}" ${!en?'style="opacity:.4"':''}>✓</button>
@@ -708,10 +716,10 @@ function rPath(){
   let html=`<div class="p-title">The All Black Pathway</div><div class="p-sub">First XV → All Blacks. Every step, every pillar.</div><div class="goldbar"></div>`;
   html+=`<div class="quote-block"><span class="quote-txt">${p.quote}</span><button class="cbtn" data-editquote="1" title="Edit"><i class="ti ti-pencil"></i></button></div>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Stages</div>`;
-  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div>${s.link?`<a href="${s.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:3px;margin-top:5px;font-size:11px;color:#5A9AF0;text-decoration:none;padding:2px 7px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a>`:''}</div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" data-editstage="${si}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delstage="${si}"><i class="ti ti-trash"></i></button></div></div>`).join('');
+  html+=p.stages.map((s,si)=>`<div class="stage-card"><div class="stage-num">${si+1}</div><div class="stage-body"><div class="stage-title">${s.title}</div><div class="stage-detail">${s.detail}</div>${s.link?`<a href="${s.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:3px;margin-top:5px;font-size:11px;color:#A78BFA;text-decoration:none;padding:2px 7px;background:#160F28;border:1px solid #3A2D66;border-radius:4px">🔗 Open link</a>`:''}</div><span class="stage-badge" style="color:${s.bc};background:${s.bb};border:1px solid ${s.bc}40">${s.badge}</span><div class="stage-acts"><button class="xbtn" data-editstage="${si}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delstage="${si}"><i class="ti ti-trash"></i></button></div></div>`).join('');
   html+=`<button class="addbtn" data-addstage="1" style="margin-bottom:20px"><i class="ti ti-plus"></i> Add stage</button>`;
   html+=`<div class="seclab" style="margin-bottom:8px">The Four Pillars</div>`;
-  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" data-pillar="${pi}"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><div style="display:flex;align-items:center;gap:4px"><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i><button class="xbtn" data-editpillar="${pi}" style="margin-left:4px" title="Edit pillar"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delpillar="${pi}" title="Delete pillar"><i class="ti ti-trash"></i></button></div></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${it.link?`<a href="${it.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#5A9AF0;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#0D1520;border:1px solid #1A3A5A;border-radius:4px">🔗 Open link</a>`:''}${it.link?'':''}  </div></div><div class="iacts"><button class="xbtn" data-edititem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delitem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" data-additem="${pi}"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
+  html+=p.pillars.map((pl,pi)=>`<div class="pillar"><div class="phead" data-pillar="${pi}"><div style="display:flex;align-items:center;gap:10px"><div class="picon" style="background:${pl.bg}">${pl.icon}</div><div><div class="pname">${pl.name}</div><div class="pdesc">${pl.desc}</div></div></div><div style="display:flex;align-items:center;gap:4px"><i class="ti ti-chevron-down" style="font-size:16px;color:#3A4050;transition:transform .2s;transform:${pl.open?'rotate(180deg)':'none'}"></i><button class="xbtn" data-editpillar="${pi}" style="margin-left:4px" title="Edit pillar"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delpillar="${pi}" title="Delete pillar"><i class="ti ti-trash"></i></button></div></div><div class="pbody${pl.open?' open':''}">${pl.items.map((it,ii)=>`<div class="irow"><div class="idot" style="background:${pl.color}"></div><div style="flex:1"><div class="itext">${it.text}</div>${it.sub?`<div class="isub">${it.sub}</div>`:''}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${it.link?`<a href="${it.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:11px;color:#A78BFA;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#160F28;border:1px solid #3A2D66;border-radius:4px">🔗 Open link</a>`:''}${it.link?'':''}  </div></div><div class="iacts"><button class="xbtn" data-edititem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-pencil"></i></button><button class="xbtn del" data-delitem="1" data-pi="${pi}" data-ii="${ii}"><i class="ti ti-trash"></i></button></div></div>`).join('')}<button class="add-item" data-additem="${pi}"><i class="ti ti-plus"></i> Add item</button></div></div>`).join('');
   html+=`<button class="addbtn" data-addpillar="1" style="margin-top:8px"><i class="ti ti-plus"></i> Add pillar</button>`;
   return html;
 }
@@ -836,11 +844,11 @@ window.tpl=pi=>{path.pillars[pi].open=!path.pillars[pi].open;savePath();render()
 window.eqt=ev=>{if(ev)ev.stopPropagation();showMod('Edit quote',[{id:'q',label:'Quote',type:'textarea',val:path.quote}],()=>{const q=gf('q');if(q)path.quote=q;cmModal();savePath();render();});};
 window.est=(si,ev)=>{if(ev)ev.stopPropagation();const s=path.stages[si];showMod('Edit stage',[{id:'t',label:'Title',val:s.title},{id:'d',label:'Detail',type:'textarea',val:s.detail},{id:'b',label:'Badge',val:s.badge},{id:'l',label:'Link (optional)',val:s.link||'',ph:'https://...'}],()=>{const t=gf('t'),d=gf('d'),b=gf('b');if(t)s.title=t;s.detail=d;if(b)s.badge=b;s.link=gf('l');cmModal();savePath();render();});};
 window.dst=si=>{if(!confirm('Delete stage?'))return;path.stages.splice(si,1);savePath();render();};
-window.ast=ev=>{if(ev)ev.stopPropagation();showMod('Add stage',[{id:'t',label:'Title',ph:'Stage name'},{id:'d',label:'Detail',type:'textarea'},{id:'b',label:'Badge',ph:'e.g. Age 18–20'},{id:'l',label:'Link (optional)',ph:'https://...'}],()=>{const t=gf('t');if(!t)return;path.stages.push({id:uid(),title:t,detail:gf('d'),badge:gf('b')||'',link:gf('l'),bc:'#2A6FD4',bb:'#0D1520'});cmModal();savePath();render();});};
+window.ast=ev=>{if(ev)ev.stopPropagation();showMod('Add stage',[{id:'t',label:'Title',ph:'Stage name'},{id:'d',label:'Detail',type:'textarea'},{id:'b',label:'Badge',ph:'e.g. Age 18–20'},{id:'l',label:'Link (optional)',ph:'https://...'}],()=>{const t=gf('t');if(!t)return;path.stages.push({id:uid(),title:t,detail:gf('d'),badge:gf('b')||'',link:gf('l'),bc:'#7958FF',bb:'#160F28'});cmModal();savePath();render();});};
 window.eit=(pi,ii,ev)=>{if(ev)ev.stopPropagation();const it=path.pillars[pi].items[ii];showMod('Edit item',[{id:'t',label:'Title',val:it.text},{id:'s',label:'Sub-text',type:'textarea',val:it.sub||''},{id:'l',label:'Link (optional)',val:it.link||'',ph:'https://...'}],()=>{const t=gf('t');if(t)it.text=t;it.sub=gf('s');it.link=gf('l');cmModal();savePath();render();});};
 window.dit=(pi,ii)=>{if(!confirm('Delete item?'))return;path.pillars[pi].items.splice(ii,1);savePath();render();};
 window.ait=(pi,ev)=>{if(ev)ev.stopPropagation();showMod('Add item',[{id:'t',label:'Title',ph:'Item title'},{id:'s',label:'Sub-text',type:'textarea',ph:'Details, cues...'},{id:'l',label:'Link (optional)',ph:'https://...'}],()=>{const t=gf('t');if(!t)return;path.pillars[pi].items.push({id:uid(),text:t,sub:gf('s'),link:gf('l')});cmModal();savePath();render();});};
-window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'Name',ph:'e.g. Nutrition'},{id:'d',label:'Description',ph:'Short description'},{id:'e',label:'Emoji icon',ph:'🔥'}],()=>{const n=gf('n');if(!n)return;path.pillars.push({id:uid(),icon:gf('e')||'📌',color:'#2A6FD4',bg:'#0D1520',name:n,desc:gf('d'),items:[],open:true});cmModal();savePath();render();});};
+window.apl=ev=>{if(ev)ev.stopPropagation();showMod('Add pillar',[{id:'n',label:'Name',ph:'e.g. Nutrition'},{id:'d',label:'Description',ph:'Short description'},{id:'e',label:'Emoji icon',ph:'🔥'}],()=>{const n=gf('n');if(!n)return;path.pillars.push({id:uid(),icon:gf('e')||'📌',color:'#7958FF',bg:'#160F28',name:n,desc:gf('d'),items:[],open:true});cmModal();savePath();render();});};
 window.epl=(pi,ev)=>{if(ev)ev.stopPropagation();const pl=path.pillars[pi];showMod('Edit pillar',[{id:'n',label:'Name',val:pl.name},{id:'d',label:'Description',val:pl.desc},{id:'e',label:'Emoji icon',val:pl.icon}],()=>{const n=gf('n');if(n)pl.name=n;pl.desc=gf('d');const e=gf('e');if(e)pl.icon=e;cmModal();savePath();render();});};
 window.dpl=pi=>{if(!confirm('Delete this entire pillar and all its items?'))return;path.pillars.splice(pi,1);savePath();render();};
 // ── TO-DO LIST ───────────────────────────────────────────────────
@@ -929,7 +937,7 @@ async function checkForUpdate(){
         if(!existing){
           const b=document.createElement('div');
           b.id='update-banner';
-          b.style.cssText='position:fixed;top:52px;left:0;right:0;background:#1A1508;border-bottom:1px solid #D4A017;padding:8px 16px;font-size:12px;color:#D4A017;text-align:center;z-index:200;cursor:pointer';
+          b.style.cssText='position:fixed;top:52px;left:0;right:0;background:#160F28;border-bottom:1px solid #7958FF;padding:8px 16px;font-size:12px;color:#A78BFA;text-align:center;z-index:200;cursor:pointer';
           b.textContent='🔄 New update available — tap to refresh';
           b.onclick=()=>location.reload();
           document.body.appendChild(b);
@@ -955,48 +963,80 @@ async function init(){
     else{await setDoc(TODO_DOC,{data:JSON.stringify(todoData)});}
     // ── MIGRATE: Update Wednesday blocks in Firebase ─────────────────
     // This runs once to push the new Wednesday schedule live
-    const MIGRATION_KEY = 'jersey10-wed-migration-v3';
+    const MIGRATION_KEY = 'jersey10-schedule-update-v5';
     const migDoc = doc(db,'jersey10','migrations');
     let migDone = false;
     try{ const ms = await getDoc(migDoc); if(ms.exists()&&ms.data()[MIGRATION_KEY])migDone=true; }catch(e){}
     if(!migDone && sched){
       // Build the new Wednesday blocks
       const newWedBlocks = [
-        {id:'wm-hrv',    start:"05:45",end:"05:50",label:"hrv",         name:"Morning HRV check",                    detail:"Check before getting up. Biggest training day — low HRV means scale back, don't skip.",                                                                                                                                         cat:"routine"},
+        {id:'wm-hrv',    start:"05:45",end:"05:50",label:"hrv",         name:"Morning HRV check",                    detail:"Check before getting up. Long day ahead — low HRV means scale back, don't skip.",                                                                                                                                         cat:"routine"},
         {id:'wm-wake',   start:"05:50",end:"06:30",label:"wake up",     name:"Early wake up",                        detail:"Hydration + banana. Kit ready the night before.",                                                                                                                                                                            cat:"routine"},
         {id:'wm-trav',   start:"06:40",end:"07:00",label:"travel",      name:"Travel to morning session",            detail:"Arrive 5 min early.",                                                                                                                                                                                                        cat:"routine"},
         {id:'wm-team',   start:"07:00",end:"08:15",label:"team",        name:"Morning team session (optional)",      detail:"Full engagement. Kicking covered here so afternoon is free for gym and speed. ~75 min.",                                                                                                                                        cat:"team"},
         {id:'wm-sch',    start:"08:20",end:"08:45",label:"school",      name:"Head to school",                       detail:"Recovery snack. Commute.",                                                                                                                                                                                                   cat:"routine"},
-        {id:'wm-fuel',   start:"16:30",end:"16:45",label:"home",        name:"Home — fuel up",                       detail:"High-carb snack immediately: banana + peanut butter or rice cakes. Three sessions ahead. Change into kit.",                                                                                                                     cat:"routine"},
-        {id:'wm-proc',   start:"16:45",end:"16:48",label:"process",     name:"Process goals — 3 for today",         detail:"Speed: full effort every rep. Gym: beat last week on at least one lift. Conditioning: don't quit early.",                                                                                                                       cat:"routine"},
+        {id:'wm-fuel',   start:"16:30",end:"16:45",label:"home",        name:"Home — fuel up",                       detail:"High-carb snack immediately: banana + peanut butter or rice cakes. Two sessions ahead. Change into kit.",                                                                                                                       cat:"routine"},
+        {id:'wm-proc',   start:"16:45",end:"16:48",label:"process",     name:"Process goals — 3 for today",         detail:"Speed: full effort every rep. Gym: beat last week on at least one lift.",                                                                                                                                                       cat:"routine"},
         {id:'wm-spd',    start:"16:48",end:"17:10",label:"sprint",      name:"Speed session — acceleration work",   detail:"Dynamic warm-up 5 min → 6×20m standing start at 100% (90s full rest between) → 4×10m reaction starts. 22 min total. Pure first-step speed — short enough to keep CNS fresh for gym.",                                         cat:"sprint"},
         {id:'wm-str1',   start:"17:10",end:"17:30",label:"stretch",     name:"Mobility + gym activation",           detail:"Hip flexors, thoracic rotation, shoulder CARs. Doubles as warm-up for gym. 20 min.",                                                                                                                                             cat:"stretch"},
         {id:'wm-gym',    start:"17:30",end:"18:35",label:"gym",         name:"Gym — upper body + accessory",        detail:"Bench press 4×6 → Weighted chin-ups 4×5 → DB shoulder press 3×10 → Cable rows 3×12 → Rotator cuff work 3×15 → Face pulls 3×15 → Nordic curls 3×6. 65 min. Upper body — complements Monday lower body split.",                 cat:"gym"},
-        {id:'wm-cond',   start:"18:35",end:"18:55",label:"conditioning",name:"Conditioning finisher",               detail:"4 rounds: 10× box jumps → 10× med ball slams → 10× burpees → 45s rest. ~20 min. Raises growth hormone, builds repeat effort capacity. Scale to how body feels — skip if genuinely empty.",                                      cat:"sprint"},
-        {id:'wm-str2',   start:"18:55",end:"19:10",label:"stretch",     name:"Post-session full stretch",           detail:"Full body static holds. Hamstrings, hip flexors, thoracic, calves. 10 min minimum. Non-negotiable after this day.",                                                                                                              cat:"stretch"},
-        {id:'wm-din',    start:"19:15",end:"20:00",label:"dinner",      name:"Dinner + shower",                     detail:"Big recovery meal: protein + carbs + veg. Shower. You need fuel after three sessions.",                                                                                                                                          cat:"routine"},
-        {id:'wm-free',   start:"20:00",end:"21:20",label:"free",        name:"Free time",                           detail:"Girlfriend, gaming, rest. Shorter tonight — you've done a lot.",                                                                                                                                                                 cat:"free"},
-        {id:'wm-jrnl',   start:"21:20",end:"21:25",label:"journal",     name:"Training journal",                    detail:"Log any gym PRs, sprint times, conditioning rating 1-10.",                                                                                                                                                                      cat:"routine"},
-        {id:'wm-study',  start:"21:30",end:"22:00",label:"study",       name:"Study",                               detail:"30 min.",                                                                                                                                                                                                                       cat:"routine"},
-        {id:'wm-wind',   start:"22:00",end:"22:30",label:"wind down",   name:"Wind down",                           detail:"Prioritise sleep — three sessions is significant CNS load.",                                                                                                                                                                     cat:"sleep"},
+        {id:'wm-str2',   start:"18:35",end:"18:50",label:"stretch",     name:"Post-session full stretch",           detail:"Full body static holds. Hamstrings, hip flexors, thoracic, calves. 15 min minimum.",                                                                                                                                            cat:"stretch"},
+        {id:'wm-din',    start:"18:55",end:"19:40",label:"dinner",      name:"Dinner + shower",                     detail:"Recovery meal: protein + carbs + veg. Shower.",                                                                                                                                                                                 cat:"routine"},
+        {id:'wm-free',   start:"19:40",end:"21:35",label:"free",        name:"Free time",                           detail:"Girlfriend, gaming, rest. Conditioning is off today — evening is a bit longer.",                                                                                                                                                cat:"free"},
+        {id:'wm-jrnl',   start:"21:35",end:"21:40",label:"journal",     name:"Training journal",                    detail:"Log any gym PRs and sprint times.",                                                                                                                                                                                              cat:"routine"},
+        {id:'wm-study',  start:"21:40",end:"22:05",label:"study",       name:"Study",                               detail:"25 min.",                                                                                                                                                                                                                       cat:"routine"},
+        {id:'wm-wind',   start:"22:05",end:"22:30",label:"wind down",   name:"Wind down",                           detail:"No screens, dim lights.",                                                                                                                                                                     cat:"sleep"},
         {id:'wm-sleep',  start:"22:30",end:"06:30",label:"sleep",       name:"Lights out",                          detail:"8+ hours. Thursday team tomorrow.",                                                                                                                                                                                              cat:"sleep"}
       ];
       sched[2].blocks = newWedBlocks;
       sched[2].load = "high";
-      sched[2].loadLabel = "High — team + speed + gym + conditioning";
-      sched[2].sub = "Biggest training volume day. Team in the morning covers kicking — afternoon is speed, gym, and conditioning.";
+      sched[2].loadLabel = "High — team + speed + gym";
+      sched[2].sub = "Team in the morning covers kicking — afternoon is speed and gym. Conditioning has moved off Wednesday.";
       sched[2].note = "Early start if doing 7am — wake 5:45. Kicking done at morning team session.";
       sched[2].science = [
-        "Kicking covered in morning team session — afternoon free for strength and conditioning work",
+        "Kicking covered in morning team session — afternoon free for strength work",
         "Speed acceleration before gym is fine at low volume — CNS recovers within minutes at 6×20m",
         "Upper body gym Wednesday has no conflict with Monday lower body — 48h+ recovery window",
-        "Metabolic conditioning finisher raises growth hormone and builds repeat effort capacity",
-        "Midweek is optimal for volume work — Tuesday fatigue cleared, Thursday not yet arrived"
+        "Removing the extra conditioning finisher here reduces total weekly CNS load without losing fitness work — it's been added elsewhere"
       ];
+
+      // Build the new Monday blocks — adds a rugby fitness/conditioning finisher
+      // after the gym session, since Tuesday's team training gives a recovery
+      // buffer before Wednesday. Free time is trimmed by 20 min so bedtime stays fixed.
+      const newMonBlocks = [
+        {id:'mo-hrv',   start:"06:30",end:"06:35",label:"hrv",         name:"Morning HRV check",                  detail:"Check HRV / resting HR first thing, before getting up. Guides today’s training intensity — low reading means back off, normal or high means push.",cat:"routine"},
+        {id:'mo-wake',  start:"06:35",end:"07:00",label:"wake up",     name:"Wake up + morning routine",          detail:"500ml water. Oats or eggs + toast.",cat:"routine"},
+        {id:'mo-sch',   start:"07:10",end:"07:45",label:"school",     name:"Leave for school",                   detail:"Commute.",cat:"routine"},
+        {id:'mo-home',  start:"16:30",end:"17:00",label:"home",       name:"Home — fuel up",                     detail:"High-carb snack. Change into kit.",cat:"routine"},
+        {id:'mo-proc',  start:"16:55",end:"17:00",label:"process",    name:"Process goals — 3 before training",  detail:"Identify 3 specific process goals before this session. e.g. full effort every rep, clean footwork on starts, no drop-off after rep 4.",cat:"routine"},
+        {id:'mo-sprint',start:"17:00",end:"17:50",label:"sprint",     name:"RSA sprint session",                 detail:"Warm-up → 6×40m at 95%+ (3 min rest) → 4×10m starts → 2×20m. Progress RSA volume up and rest ratio down gradually over months, not weeks. Track every split time, perceived exertion, and recovery HR.",cat:"sprint"},
+        {id:'mo-gym',   start:"18:00",end:"19:30",label:"gym",        name:"Gym — full body",                    detail:"Squat 4×5 → Bench 4×5 → Deadlift 3×5 → DB row 3×8 → Hip thrust 3×10 → Push press 3×8 → Calf raises 3×15 → Planks 3×45s. 90 min.",cat:"gym"},
+        {id:'mo-str',   start:"19:30",end:"19:50",label:"stretch",    name:"Post-gym stretch",                   detail:"Hip flexors, quads, hamstrings, glutes, thoracic. PNF holds 30–45s.",cat:"stretch"},
+        {id:'mo-nordic',start:"19:50",end:"19:56",label:"nordic",     name:"Nordic curls",                       detail:"3×6, controlled eccentric lowering. Hamstring injury prevention — non-negotiable, twice weekly indefinitely.",cat:"stretch"},
+        {id:'mo-cond',  start:"19:56",end:"20:16",label:"conditioning",name:"Conditioning finisher — rugby fitness circuit",detail:"4 rounds: 10× box jumps → 10× med ball slams → 10× burpees → 45s rest. ~20 min. Builds repeat-effort capacity for the 70th minute. Scale to how the body feels.",cat:"sprint"},
+        {id:'mo-din',   start:"20:20",end:"21:00",label:"dinner",     name:"Dinner + shower",                    detail:"Chicken/fish + rice + veg.",cat:"routine"},
+        {id:'mo-free',  start:"21:00",end:"21:20",label:"free",       name:"Free time",                          detail:"Girlfriend, gaming, unwind. Shorter tonight — conditioning finisher added.",cat:"free"},
+        {id:'mo-touch', start:"21:20",end:"21:30",label:"touch",      name:"Skill touch — ball in hands",        detail:"10 minutes minimum. Passing, footwork, ball handling. Every single day, even on heavy training days.",cat:"kick"},
+        {id:'mo-study', start:"21:30",end:"22:00",label:"study",      name:"Study",                              detail:"30 min. One topic, no phone.",cat:"routine"},
+        {id:'mo-jrnl',  start:"22:00",end:"22:05",label:"journal",    name:"Training journal",                   detail:"5 minutes. What went well today, one thing to improve tomorrow.",cat:"routine"},
+        {id:'mo-vis',   start:"22:05",end:"22:20",label:"visualise",  name:"Visualisation",                      detail:"10 minutes before sleep. Tomorrow’s team session — calls, kicks, defensive reads.",cat:"sleep"},
+        {id:'mo-wind',  start:"22:20",end:"22:30",label:"wind down",  name:"Wind down",                          detail:"No screens. Dim lights.",cat:"sleep"},
+        {id:'mo-sleep', start:"22:30",end:"06:30",label:"sleep",      name:"Lights out — 8hr window",            detail:"8+ hours minimum, consistent times every night.",cat:"sleep"}
+      ];
+      sched[0].blocks = newMonBlocks;
+      sched[0].loadLabel = "High load — sprint + full body gym + conditioning";
+      sched[0].science = [
+        "Post-weekend recovery makes Monday optimal for peak neuromuscular work (Kraemer & Ratamess, 2004)",
+        "Sprints before gym preserves CNS quality — fatigued sprints lose speed adaptation",
+        "Fly-half first-step acceleration: 10–40m at >95% is the stimulus",
+        "Full body gym compounds weekly volume efficiently",
+        "Conditioning finisher sits here because Monday is the day built for maximum output — Tuesday's team session gives recovery before Wednesday"
+      ];
+
       try{
         await setDoc(SCHED_DOC,{data:JSON.stringify(sched)});
         await setDoc(migDoc,{[MIGRATION_KEY]:true});
-        showToast('Wednesday updated! 🏋️');
+        showToast('Schedule updated 🎉');
       }catch(e){console.error('Migration failed:',e);}
     }
     // ── END MIGRATION ────────────────────────────────────────────────
